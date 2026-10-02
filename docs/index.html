@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,11 +37,11 @@
           <div class="chicken-foot chicken-foot--right"></div>
         </div>
         <div class="chicken-speech-bubble" id="chickenSpeechBubble">
-          <div class="speech-bubble-content" data-i18n="loadingNetworkPoor">あれ~ネットの接続がちょっと悪いな~</div>
+          <div class="speech-bubble-content" data-i18n="loadingNetworkPoor">おいおい、ネット環境が少し悪いみたいだぞ~</div>
           <div class="speech-bubble-arrow"></div>
         </div>
       </div>
-      <div class="loading-text" data-i18n="loadingChicken">Dindon Chickenを読み込み中...</div>
+      <div class="loading-text" data-i18n="loadingChicken">おやびん（叮咚鶏）が懸命に読み込み中...</div>
       <div class="loading-progress">
         <div class="loading-progress-bar">
           <div class="loading-progress-fill"></div>
@@ -58,20 +58,20 @@
   <div class="top-marquee">
     <div class="top-marquee-inner" id="marqueeInner">
       <span class="marquee-text" id="marqueeText">
-        📻 <span data-i18n="visitorTotalPrefix">共有</span> <span id="busuanzi_page_uv"><i class="loading-spinner"></i></span> <span data-i18n="visitorTotalSuffix">位 Ham 访问过本网站</span>，<span data-i18n="visitorTodayPrefix">今日与你一起刷机的有</span> <span id="busuanzi_today_uv"><i class="loading-spinner"></i></span> <span data-i18n="visitorTodaySuffix">人</span> 📻
+        📻 <span data-i18n="visitorTotalPrefix">累計</span> <span id="busuanzi_page_uv"><i class="loading-spinner"></i></span> <span data-i18n="visitorTotalSuffix">人のハムが当サイトを訪問しました</span>，<span data-i18n="visitorTodayPrefix">本日一緒にファームウェアを書きえている仲間は</span> <span id="busuanzi_today_uv"><i class="loading-spinner"></i></span> <span data-i18n="visitorTodaySuffix">人です</span> 📻
       </span>
     </div>
   </div>
   <div class="top-right-buttons" style="position:fixed;top:44px;right:12px;z-index:9998;">
-    <a href="help.html" class="help-btn" title="帮助文档" aria-label="帮助文档" data-i18n-title="helpDocTitle" data-i18n-aria="helpDocTitle">
+    <a href="help.html" class="help-btn" title="ヘルプドキュメント" aria-label="ヘルプドキュメント" data-i18n-title="helpDocTitle" data-i18n-aria="helpDocTitle">
       <svg class="help-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
         <line x1="12" y1="17" x2="12.01" y2="17"/>
       </svg>
-      <span class="help-btn__text" data-i18n="helpDoc">帮助文档</span>
+      <span class="help-btn__text" data-i18n="helpDoc">ヘルプ</span>
     </a>
-    <button type="button" id="langSwitchBtn" class="lang-switch" title="切换语言" aria-label="切换语言" data-i18n-title="langSwitchTitle" data-i18n-aria="langSwitchTitle">
+    <button type="button" id="langSwitchBtn" class="lang-switch" title="言語を切り替え" aria-label="言語を切り替え" data-i18n-title="langSwitchTitle" data-i18n-aria="langSwitchTitle">
       <svg class="lang-switch__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
         <line x1="2" y1="12" x2="22" y2="12"/>
@@ -79,7 +79,7 @@
       </svg>
       <span class="lang-switch__text" data-i18n="langSwitchLabel">EN</span>
     </button>
-    <button type="button" id="themeToggleBtn" class="theme-toggle" title="切换浅色主题" aria-label="切换浅色主题" data-i18n-title="themeToggleTitle" data-i18n-aria="themeToggleTitle">
+    <button type="button" id="themeToggleBtn" class="theme-toggle" title="ライトテーマに切り替え" aria-label="ライトテーマに切り替え" data-i18n-title="themeToggleTitle" data-i18n-aria="themeToggleTitle">
       <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="4"/>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
@@ -93,72 +93,72 @@
   <div id="flashDeviceWarningModal" class="flash-device-warning-modal" hidden aria-hidden="true">
     <div class="flash-device-warning-modal__backdrop" data-flash-warning-dismiss tabindex="-1" aria-hidden="true"></div>
     <div class="flash-device-warning-modal__panel" role="dialog" aria-modal="true" aria-labelledby="flashDeviceWarningTitle">
-      <h2 id="flashDeviceWarningTitle" class="flash-device-warning-modal__title" data-i18n="flashWarningTitle">刷机前请确认设备型号</h2>
-      <p class="flash-device-warning-modal__text" data-i18n="flashWarningText1">请检查你的设备是否为泉盛 uvk1、泉盛 uvk5/uvk6 <strong>V3 版本</strong>。老版本泉盛 uvk5 和 uvk6 刷机会变砖！！！</p>
-      <p class="flash-device-warning-modal__text" data-i18n="flashWarningText2">查看方法：机器背部标签是否有 V3 字样，或者询问卖家。</p>
-      <button type="button" class="flash-device-warning-modal__btn" id="flashDeviceWarningOkBtn" data-i18n="flashWarningOk">我已了解</button>
+      <h2 id="flashDeviceWarningTitle" class="flash-device-warning-modal__title" data-i18n="flashWarningTitle">書き込み前にデバイスのモデルをご確認ください</h2>
+      <p class="flash-device-warning-modal__text" data-i18n="flashWarningText1">ご使用のデバイスが泉盛 (Quansheng) UV-K1、または UV-K5/UV-K6 <strong>V3バージョン</strong>であることを確認してください。旧バージョンの UV-K5 および UV-K6 でファームウェアを書き込むと、デバイスが文鎮化（破損）します！！！</p>
+      <p class="flash-device-warning-modal__text" data-i18n="flashWarningText2">確認方法：本体背面のラベルに「V3」の文字があるか確認するか、販売店にお問い合わせください。</p>
+      <button type="button" class="flash-device-warning-modal__btn" id="flashDeviceWarningOkBtn" data-i18n="flashWarningOk">確認しました</button>
     </div>
   </div>
-  <div class="subtitle-chips" id="subtitleChips" aria-label="社交平台账号" style="position:fixed;right:10px;bottom:20px;z-index:9980;">
+  <div class="subtitle-chips" id="subtitleChips" aria-label="SNSアカウント" style="position:fixed;right:10px;bottom:20px;z-index:9980;">
     <div class="subtitle-chips-header">
-      <span class="subtitle-chips-title" data-i18n="mediaAccount">BD1AHN媒体账号</span>
-      <button class="subtitle-chips-toggle" id="subtitleChipsToggle" type="button" aria-label="收起" title="收起" data-i18n-title="collapseChips" data-i18n-aria="collapseChips">
+      <span class="subtitle-chips-title" data-i18n="mediaAccount">BD1AHN メディアアカウント</span>
+      <button class="subtitle-chips-toggle" id="subtitleChipsToggle" type="button" aria-label="折り畳む" title="折り畳む" data-i18n-title="collapseChips" data-i18n-aria="collapseChips">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
     </div>
     <div class="subtitle-chips-body" id="subtitleChipsBody">
-    <span class="subtitle-chip subtitle-chip--douyin" title="抖音 · 小闫连不上">
+    <span class="subtitle-chip subtitle-chip--douyin" title="抖音 (TikTok) · 小闫连不上">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 3v9.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
       </svg>
       <span class="subtitle-chip-label" data-i18n="douyin">抖音</span>
-      <span class="subtitle-chip-name" data-i18n="douyinName">小闫连不上</span>
+      <span class="subtitle-chip-name" data-i18n="douyinName">小闫連不上</span>
     </span>
-    <span class="subtitle-chip subtitle-chip--bili" title="哔哩哔哩 · 小闫连不上">
+    <span class="subtitle-chip subtitle-chip--bili" title="ビリビリ (Bilibili) · 小闫连不上">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
         <path d="M6 8l2 3h8l2-3"/>
         <path d="M9.5 15h5"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="bili">B站</span>
-      <span class="subtitle-chip-name" data-i18n="biliName">小闫连不上</span>
+      <span class="subtitle-chip-label" data-i18n="bili">BiliBili</span>
+      <span class="subtitle-chip-name" data-i18n="biliName">小闫連不上</span>
     </span>
-    <span class="subtitle-chip subtitle-chip--redbook" title="小红书 · 小闫同学">
+    <span class="subtitle-chip subtitle-chip--redbook" title="小紅書 (RED) · 小闫同学">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
         <path d="M8 7h8M8 11h6"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="redbook">小红书</span>
+      <span class="subtitle-chip-label" data-i18n="redbook">小紅書</span>
       <span class="subtitle-chip-name" data-i18n="redbookName">小闫同学</span>
     </span>
-    <span class="subtitle-chip subtitle-chip--weixin" title="微信视频号 · 小闫连不上">
+    <span class="subtitle-chip subtitle-chip--weixin" title="微信チャンネル · 小闫连不上">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
         <path d="M10 9.5L15 12l-5 2.5V9.5z" fill="currentColor" stroke="none"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="wechatVideo">微信视频号</span>
-      <span class="subtitle-chip-name" data-i18n="wechatVideoName">小闫连不上</span>
+      <span class="subtitle-chip-label" data-i18n="wechatVideo">微信チャンネル</span>
+      <span class="subtitle-chip-name" data-i18n="wechatVideoName">小闫連不上</span>
     </span>
-    <a href="https://ethanyan6.github.io/fmo-show/" class="subtitle-chip subtitle-chip--fmo" title="FMO副屏 · 点击查看" aria-label="FMO副屏，点击查看" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/fmo-show/" class="subtitle-chip subtitle-chip--fmo" title="FMOサブ画面 · クリックして表示" aria-label="FMOサブ画面、クリックして表示" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="fmoScreen">FMO副屏</span>
-      <span class="subtitle-chip-name" data-i18n="clickView">点击查看</span>
+      <span class="subtitle-chip-label" data-i18n="fmoScreen">FMOサブ画面</span>
+      <span class="subtitle-chip-name" data-i18n="clickView">クリックして表示</span>
     </a>
-    <a href="https://ethanyan6.github.io/hand_drawn_map/" class="subtitle-chip subtitle-chip--travel" title="旅行手账 · 点击查看" aria-label="旅行手账，点击查看" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/hand_drawn_map/" class="subtitle-chip subtitle-chip--travel" title="旅行手帳 · クリックして表示" aria-label="旅行手帳、クリックして表示" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
         <line x1="9" y1="3" x2="9" y2="18"/>
         <line x1="15" y1="6" x2="15" y2="21"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="travelJournal">旅行手账</span>
-      <span class="subtitle-chip-name" data-i18n="clickView">点击查看</span>
+      <span class="subtitle-chip-label" data-i18n="travelJournal">旅行手帳</span>
+      <span class="subtitle-chip-name" data-i18n="clickView">クリックして表示</span>
     </a>
-    <a href="https://ethanyan6.github.io/dagojo/" class="subtitle-chip subtitle-chip--dagojo" title="自驾游大屏 · 点击查看" aria-label="自驾游大屏，点击查看" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/dagojo/" class="subtitle-chip subtitle-chip--dagojo" title="ドライブ用大画面 · クリックして表示" aria-label="ドライブ用大画面、クリックして表示" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2"/>
         <path d="M8 21h8"/>
@@ -166,84 +166,84 @@
         <circle cx="8.5" cy="10" r="1.5" fill="currentColor" stroke="none"/>
         <path d="M12 8h5v4h-5z"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="drivingHud">自驾游大屏</span>
-      <span class="subtitle-chip-name" data-i18n="clickView">点击查看</span>
+      <span class="subtitle-chip-label" data-i18n="drivingHud">ドライブ用HUD</span>
+      <span class="subtitle-chip-name" data-i18n="clickView">クリックして表示</span>
     </a>
-    <a href="wechat-group.html" class="subtitle-chip subtitle-chip--weixin subtitle-chip--wechat-group" title="微信群 · 点击查看二维码" aria-label="微信群，点击查看二维码">
+    <a href="wechat-group.html" class="subtitle-chip subtitle-chip--weixin subtitle-chip--wechat-group" title="WeChatグループ · クリックしてQRコードを表示" aria-label="WeChatグループ、クリックしてQRコードを表示">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="wechatGroup">微信群</span>
-      <span class="subtitle-chip-name" data-i18n="clickView">点击查看</span>
+      <span class="subtitle-chip-label" data-i18n="wechatGroup">WeChatグループ</span>
+      <span class="subtitle-chip-name" data-i18n="clickView">クリックして表示</span>
     </a>
-    <a href="https://ethanyan6.github.io/Mangosteen/" class="subtitle-chip subtitle-chip--mangosteen" title="其它固件 · 山竹" aria-label="其它固件，山竹" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/Mangosteen/" class="subtitle-chip subtitle-chip--mangosteen" title="その他のファームウェア · Mangosteen" aria-label="その他のファームウェア、Mangosteen" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2c2.5 2 4 4.5 4 7.2 0 2.2-1.2 4-3 5.1V17H11v-2.7c-1.8-1.1-3-2.9-3-5.1C8 6.5 9.5 4 12 2z"/>
         <path d="M9 17h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/>
         <circle cx="10.2" cy="9" r="0.8" fill="currentColor" stroke="none"/>
         <circle cx="13.8" cy="9" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">其它固件</span>
-      <span class="subtitle-chip-name" data-i18n="otherFirmwareName">山竹</span>
+      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">その他のファームウェア</span>
+      <span class="subtitle-chip-name" data-i18n="otherFirmwareName">Mangosteen</span>
     </a>
-    <a href="https://ethanyan6.github.io/Syrup/" class="subtitle-chip subtitle-chip--syrup" title="其它固件 · 小甜水" aria-label="其它固件，小甜水" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/Syrup/" class="subtitle-chip subtitle-chip--syrup" title="その他のファームウェア · Syrup" aria-label="その他のファームウェア、Syrup" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2c2.5 2 4 4.5 4 7.2 0 2.2-1.2 4-3 5.1V17H11v-2.7c-1.8-1.1-3-2.9-3-5.1C8 6.5 9.5 4 12 2z"/>
         <path d="M9 17h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/>
         <circle cx="10.2" cy="9" r="0.8" fill="currentColor" stroke="none"/>
         <circle cx="13.8" cy="9" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">其它固件</span>
-      <span class="subtitle-chip-name" data-i18n="syrupFirmwareName">小甜水</span>
+      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">その他のファームウェア</span>
+      <span class="subtitle-chip-name" data-i18n="syrupFirmwareName">Syrup</span>
     </a>
-    <a href="https://ethanyan6.github.io/uv-k1-k5-v3-game-web/" class="subtitle-chip subtitle-chip--gamefw" title="其它固件 · 游戏固件" aria-label="其它固件，游戏固件" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/uv-k1-k5-v3-game-web/" class="subtitle-chip subtitle-chip--gamefw" title="その他のファームウェア · ゲームファームウェア" aria-label="その他のファームウェア、ゲームファームウェア" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2c2.5 2 4 4.5 4 7.2 0 2.2-1.2 4-3 5.1V17H11v-2.7c-1.8-1.1-3-2.9-3-5.1C8 6.5 9.5 4 12 2z"/>
         <path d="M9 17h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/>
         <circle cx="10.2" cy="9" r="0.8" fill="currentColor" stroke="none"/>
         <circle cx="13.8" cy="9" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">其它固件</span>
-      <span class="subtitle-chip-name" data-i18n="gameFirmwareName">游戏固件</span>
+      <span class="subtitle-chip-label" data-i18n="otherFirmwareLink">その他のファームウェア</span>
+      <span class="subtitle-chip-name" data-i18n="gameFirmwareName">ゲーム</span>
     </a>
-    <a href="https://ethanyan6.github.io/uv-k1-k6v3-multi-system-web/" class="subtitle-chip subtitle-chip--multisys" title="刷机工具 · 多固件刷机工具" aria-label="刷机工具，多固件刷机工具" target="_blank" rel="noopener noreferrer">
+    <a href="https://ethanyan6.github.io/uv-k1-k6v3-multi-system-web/" class="subtitle-chip subtitle-chip--multisys" title="書き込みツール · マルチファームウェア書き込みツール" aria-label="書き込みツール、マルチファームウェア書き込みツール" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2c2.5 2 4 4.5 4 7.2 0 2.2-1.2 4-3 5.1V17H11v-2.7c-1.8-1.1-3-2.9-3-5.1C8 6.5 9.5 4 12 2z"/>
         <path d="M9 17h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/>
         <circle cx="10.2" cy="9" r="0.8" fill="currentColor" stroke="none"/>
         <circle cx="13.8" cy="9" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="flashToolLink">刷机工具</span>
-      <span class="subtitle-chip-name" data-i18n="multiFirmwareToolName">多固件刷机工具</span>
+      <span class="subtitle-chip-label" data-i18n="flashToolLink">書き込みツール</span>
+      <span class="subtitle-chip-name" data-i18n="multiFirmwareToolName">マルチ書き込みツール</span>
     </a>
-    <a href="https://www.yuque.com/yanyuliang/radio/wpiyfs070wcfr55s?singleDoc#" class="subtitle-chip subtitle-chip--yuque" title="其它固件合集" aria-label="其它固件合集" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.yuque.com/yanyuliang/radio/wpiyfs070wcfr55s?singleDoc#" class="subtitle-chip subtitle-chip--yuque" title="その他のファームウェアコレクション" aria-label="その他のファームウェアコレクション" target="_blank" rel="noopener noreferrer">
       <svg class="subtitle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19.666 2H5.333C4.597 2 4 2.597 4 3.333v16.334c0 .736.597 1.333 1.333 1.333h14.333c.737 0 1.334-.597 1.334-1.333V3.333C21 2.597 20.403 2 19.666 2zm-2 15.333H6.333V4.667h11.333v12.666z"/>
         <path d="M8.666 7.333h6.667v1.334H8.667V7.333zm0 4h6.667v1.334H8.667v-1.334zm0 4h4v1.334h-4v-1.334z" fill="#00C65D"/>
         <path d="M17.333 6H6.667v13.333h10.666V6z" fill="none" stroke="#00C65D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <span class="subtitle-chip-label" data-i18n="otherFirmware">其它固件合集</span>
-      <span class="subtitle-chip-name" data-i18n="clickView">点击查看</span>
+      <span class="subtitle-chip-label" data-i18n="otherFirmware">ファームウェア集</span>
+      <span class="subtitle-chip-name" data-i18n="clickView">クリックして表示</span>
     </a>
     </div>
-    <div class="subtitle-chips-collapsed" id="subtitleChipsCollapsed" data-i18n="mediaAccount" role="button" tabindex="0" title="展开" data-i18n-title="expandChips" data-i18n-aria="expandChips">BD1AHN媒体账号</div>
+    <div class="subtitle-chips-collapsed" id="subtitleChipsCollapsed" data-i18n="mediaAccount" role="button" tabindex="0" title="展開" data-i18n-title="expandChips" data-i18n-aria="expandChips">BD1AHN メディアアカウント</div>
   </div>
   <div class="page-layout">
     <!-- VERSION TIMELINE SIDEBAR -->
     <aside class="timeline-sidebar" id="timelineSidebar">
-      <h2 class="timeline-title" data-i18n="timelineTitle">叮咚鸡（Dondji）历史版本</h2>
+      <h2 class="timeline-title" data-i18n="timelineTitle">おやびん (Dondji) 履歴バージョン</h2>
       <div class="timeline" id="timeline">
-        <div class="timeline-loading" data-i18n="timelineLoading">加载中...</div>
+        <div class="timeline-loading" data-i18n="timelineLoading">読み込み中...</div>
       </div>
     </aside>
 
     <main class="main-column">
     <div class="container">
     <header class="header">
-      <h1 class="h1" data-i18n="mainTitle">UV-K1 / UV-K5(K6) V3 Web Tool</h1>
+      <h1 class="h1" data-i18n="mainTitle">UV-K1 / UV-K5(K6) V3 Webツール</h1>
     </header>
     <div class="subtitle subtitle-social" role="doc-subtitle">
       <div class="subtitle-dev">
@@ -252,9 +252,9 @@
           <path d="M8 12a4 4 0 0 1 8 0"/>
           <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
         </svg>
-        <span data-i18n="devBy" data-i18n-params='{"dev":"BD1AHN"}'>由 <strong class="subtitle-call">BD1AHN</strong> 开发</span>
+        <span data-i18n="devBy" data-i18n-params='{"dev":"BD1AHN"}'>開発者: <strong class="subtitle-call">BD1AHN</strong></span>
       </div>
-      <button type="button" class="coffee-btn" id="coffeeBtn" title="点击打开页面进行打赏" aria-label="请他喝杯咖啡" data-i18n-title="buyCoffeeTitle" data-i18n-aria="buyCoffee">
+      <button type="button" class="coffee-btn" id="coffeeBtn" title="ページを開いて寄付する" aria-label="コーヒーをごちそうする" data-i18n-title="buyCoffeeTitle" data-i18n-aria="buyCoffee">
         <svg class="coffee-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
           <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
@@ -262,12 +262,12 @@
           <line x1="10" y1="1" x2="10" y2="4"/>
           <line x1="14" y1="1" x2="14" y2="4"/>
         </svg>
-        <span class="coffee-text" data-i18n="buyCoffee">请他喝杯咖啡</span>
+        <span class="coffee-text" data-i18n="buyCoffee">コーヒーをごちそうする</span>
       </button>
     </div>
     </div>
 
-    <!-- 刷机步骤条（横向占满主栏，与写频表格同宽） -->
+    <!-- 書き込み手順バー -->
     <div class="flash-steps-bar">
       <div class="flash-steps-scroll">
         <div class="flash-steps-inner">
@@ -277,44 +277,44 @@
             <line x1="12" y1="9" x2="12" y2="13"/>
             <line x1="12" y1="17" x2="12.01" y2="17"/>
           </svg>
-          <span class="flash-steps-label" data-i18n="flashSteps">刷机步骤</span>
+          <span class="flash-steps-label" data-i18n="flashSteps">書き込み手順</span>
         </div>
-        <ol class="flash-steps-list" aria-label="推荐刷机顺序">
+        <ol class="flash-steps-list" aria-label="推奨書き込み順序">
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">1</span>
-            <span class="flash-step-name" data-i18n="step1">备份校准</span>
+            <span class="flash-step-name" data-i18n="step1">校正のバックアップ</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step1Tooltip">原厂固件备份一次校准即可，后续使用原始校准恢复。开机状态下备份。</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step1Tooltip">純正ファームウェアの校正データを一度バックアップします。のちほど元の校正へ復元するために使用します。電源が入った通常状態でバックアップしてください。</span>
           </li>
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">2</span>
-            <span class="flash-step-name" data-i18n="step2">刷固件</span>
+            <span class="flash-step-name" data-i18n="step2">ファームウェア書き込み</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step2Tooltip">关机后，按住PTT键的同时，转动旋钮开机，进入刷机模式。</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step2Tooltip">本体の電源を切り、PTTボタンを押しながら電源ノブを回して起動し、書き込みモードに入ります。</span>
           </li>
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">3</span>
-            <span class="flash-step-name" data-i18n="step3">清除数据</span>
+            <span class="flash-step-name" data-i18n="step3">データクリア</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step3Tooltip">初次刷入叮咚鸡固件后需要此步骤。建议先"备份配置"。关机后，同时按PTT键和紧挨着PTT键下方的侧键，一起按下后，再开机，解锁全部功能菜单。在"其它"中"恢复出厂"里选择全部。重置设备存储的信道与配置。之后可通过"恢复配置"还原设置项。</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step3Tooltip">おやびんファームウェアを初めて書き込んだ後に必要な手順です。あらかじめ「設定のバックアップ」を行うことをおすすめします。電源を切り、PTTボタンとPTTボタンすぐ下のサイドボタンを同時に押しながら電源を入れ、すべての機能メニューをロック解除します。「その他」＞「初期化」から全てを選択します。デバイスに保存されているチャンネルと設定をリセットします。その後、「設定の復元」で設定項目を復元できます。</span>
           </li>
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">4</span>
-            <span class="flash-step-name" data-i18n="step4">刷字库</span>
+            <span class="flash-step-name" data-i18n="step4">フォント書き込み</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step4Tooltip">如果版本更新日志中没有字库更改，那么无需此步骤。开机状态下刷入字库，每个版本的固件配合每个固件的中文字库，不要混用！</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step4Tooltip">バージョンの更新履歴にフォントの変更がない場合、この手順は不要です。電源が入った状態でフォントを書き込みます。各ファームウェアバージョンに対応した日本語/中国語フォントを使用し、混在させないでください！</span>
           </li>
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">5</span>
-            <span class="flash-step-name" data-i18n="step5">恢复校准</span>
+            <span class="flash-step-name" data-i18n="step5">校正の復元</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step5Tooltip">初次刷入叮咚鸡固件或初次升级V5.0.0以后版本需要此步骤。开机状态下进行，注意：只有本网站以及uvtools2网站的校准文件支持恢复，其它网站不支持。</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step5Tooltip">おやびんファームウェアへの初回書き込み、またはV5.0.0以降への初回アップデート時に必要な手順です。電源が入った状態で行います。注意：当サイトおよびuvtools2サイトの校正ファイルのみ復元をサポートしており、他のサイトのものはサポートしていません。</span>
           </li>
           <li class="flash-step-item" tabindex="0">
             <span class="flash-step-index">6</span>
-            <span class="flash-step-name" data-i18n="step6">写频</span>
+            <span class="flash-step-name" data-i18n="step6">周波数書き込み</span>
             <span class="flash-step-help" aria-hidden="true">?</span>
-            <span class="flash-step-tooltip" role="tooltip" data-i18n="step6Tooltip">开机状态下进行，读取或者写入后都会断开连接，是正常现象，防止长时间占用端口，期间误操作/误碰。</span>
+            <span class="flash-step-tooltip" role="tooltip" data-i18n="step6Tooltip">電源が入った状態で行います。読み込みまたは書き込みの完了後に接続が切断されますが、長時間のポート占有や誤操作を防ぐための正常な動作です。</span>
           </li>
         </ol>
         </div>
@@ -322,39 +322,39 @@
     </div>
 
     <p style="text-align: center; color: #8b949e; font-size: 0.85em; margin: 8px 0;" data-i18n="calibWarning">
-      恢复校准使用原厂固件初始备份。不需要每次备份校准，后面的也许备份是错的！
+      校正の復元には、純正ファームウェアの初期バックアップを使用します。毎回校正をバックアップする必要はありません（後からのバックアップは間違っている可能性があります）。
     </p>
     <p style="text-align: center; color: red; font-weight: bold; font-size: 0.85em; margin: 8px 0;" data-i18n="snowScreenWarningHtml">
-      哪个小倒霉蛋刷了V5.0.0后，变雪花屏了，肯定是校准有问题。下载刷入校准即可<a href="archive/calibration_k1.dat" download style="color: #0066cc; text-decoration: underline;" data-i18n="downloadCalibK1">点击下载校准(K1)</a> | <a href="archive/calibration_k6v3.dat" download style="color: #0066cc; text-decoration: underline;" data-i18n="downloadCalibK6V3">点击下载校准(K6V3)</a>。
+      V5.0.0にアップデートして画面が砂嵐になった方は、確実に校正に問題があります。校正ファイルをダウンロードして書き込んでください。<a href="archive/calibration_k1.dat" download style="color: #0066cc; text-decoration: underline;" data-i18n="downloadCalibK1">校正(K1)をダウンロード</a> | <a href="archive/calibration_k6v3.dat" download style="color: #0066cc; text-decoration: underline;" data-i18n="downloadCalibK6V3">校正(K6V3)をダウンロード</a>。
     </p>
 
     <div class="container">
     <!-- TABS -->
     <div class="tabs" role="tablist">
-      <button class="tab" type="button" data-tab="dump" id="tabDump" data-i18n="tabDump">备份校准</button>
-      <button class="tab active" type="button" data-tab="flash" id="tabFlash" data-i18n="tabFlash">刷固件</button>
-      <button class="tab" type="button" data-tab="font" id="tabFont" data-i18n="tabFont">刷字库</button>
-      <button class="tab" type="button" data-tab="restore" id="tabRestore" data-i18n="tabRestore">恢复校准</button>
-      <button class="tab" type="button" data-tab="writefreq" id="tabWritefreq" data-i18n="tabWritefreq">写频</button>
-      <button class="tab" type="button" data-tab="mdcbook" id="tabMdcbook" data-i18n="tabMdcbook">MDC通讯录</button>
-      <button class="tab" type="button" data-tab="logo" id="tabLogo" data-i18n="tabLogo">开机图片</button>
-      <button class="tab" type="button" data-tab="backupcfg" id="tabBackupcfg" data-i18n="tabBackupcfg">备份配置</button>
-      <button class="tab" type="button" data-tab="restorecfg" id="tabRestorecfg" data-i18n="tabRestorecfg">恢复配置</button>
-      <button class="tab" type="button" data-tab="toolbox" id="tabToolbox" data-i18n="tabToolbox">应急工具箱</button>
+      <button class="tab" type="button" data-tab="dump" id="tabDump" data-i18n="tabDump">校正バックアップ</button>
+      <button class="tab active" type="button" data-tab="flash" id="tabFlash" data-i18n="tabFlash">ファームウェア書込</button>
+      <button class="tab" type="button" data-tab="font" id="tabFont" data-i18n="tabFont">フォント書込</button>
+      <button class="tab" type="button" data-tab="restore" id="tabRestore" data-i18n="tabRestore">校正復元</button>
+      <button class="tab" type="button" data-tab="writefreq" id="tabWritefreq" data-i18n="tabWritefreq">周波数書込</button>
+      <button class="tab" type="button" data-tab="mdcbook" id="tabMdcbook" data-i18n="tabMdcbook">MDCアドレス帳</button>
+      <button class="tab" type="button" data-tab="logo" id="tabLogo" data-i18n="tabLogo">起動画面</button>
+      <button class="tab" type="button" data-tab="backupcfg" id="tabBackupcfg" data-i18n="tabBackupcfg">設定バックアップ</button>
+      <button class="tab" type="button" data-tab="restorecfg" id="tabRestorecfg" data-i18n="tabRestorecfg">設定復元</button>
+      <button class="tab" type="button" data-tab="toolbox" id="tabToolbox" data-i18n="tabToolbox">緊急ツールボックス</button>
     </div>
 
     <!-- FLASH FIRMWARE TAB -->
     <div class="tab-content active" id="flash-content">
       <section class="section">
-        <label data-i18n="fwFile">固件文件 (.bin)</label>
+        <label data-i18n="fwFile">ファームウェアファイル (.bin)</label>
         <div class="file-input-wrapper file-input-wrapper--dual">
           <div class="file-input-label" id="fileLabel">
-            <span class="file-name" id="fileName" data-i18n="noFileSelected">未选择文件</span>
+            <span class="file-name" id="fileName" data-i18n="noFileSelected">ファイルが選択されていません</span>
             <div class="file-input-actions">
-              <button type="button" class="btn-fetch file-action-remote" id="fetchLatestBtn" data-i18n="remoteFetch">远程获取</button>
+              <button type="button" class="btn-fetch file-action-remote" id="fetchLatestBtn" data-i18n="remoteFetch">リモート取得</button>
               <div class="file-local-trigger">
                 <input type="file" id="firmwareFile" accept=".bin" data-i18n-aria="selectLocalFw">
-                <span class="file-button" data-i18n="localSelect">本地选择</span>
+                <span class="file-button" data-i18n="localSelect">ローカル選択</span>
               </div>
             </div>
           </div>
@@ -362,34 +362,34 @@
         <div id="fwReleaseInfo" class="fw-info" style="display:none"></div>
       </section>
 
-      <button id="flashBtn" disabled data-i18n="flashFirmware">刷入固件</button>
+      <button id="flashBtn" disabled data-i18n="flashFirmware">ファームウェアを書き込む</button>
     </div>
 
     <!-- FONT FLASH TAB -->
     <div class="tab-content" id="font-content">
       <section class="section">
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="fontDesc1">
-          将中文字库刷入 SPI Flash，支持 6766 个中文字符（省份、城市、姓氏、全国中继常用字等）。
-          如果最新版本更新日志中，字库有变化，就需要重新刷入字库。
+          SPI Flashに日本語/中国語フォントを書き込みます（6766文字をサポート：省、都市、姓、全国の中継局でよく使われる文字など）。
+          最新の更新履歴にフォントの変更がある場合は、再度書き込む必要があります。
         </p>
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="fontWarning1">
-          ⚠️ 仅 V4.5.3 及以后支持中文信道的固件需要刷入字库。
+          ⚠️ V4.5.3以降の日本語/中国語チャンネル対応ファームウェアでのみ書き込みが必要です。
         </p>
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="fontWarning2">
-          ⚠️ 请先<strong>正常开机进入使用界面</strong>后再连接 USB 刷字库（与备份/恢复校准相同，无需 BOOT 模式）。
+          ⚠️ USBでフォントを書き込む前に、必ず<strong>通常通り電源を入れて操作画面に入って</strong>から接続してください（バックアップ/校正の復元と同様にBOOTモードは不要です）。
         </p>
       </section>
 
       <section class="section">
-        <label data-i18n="fontFile">字库文件 (.bin)</label>
+        <label data-i18n="fontFile">フォントファイル (.bin)</label>
         <div class="file-input-wrapper file-input-wrapper--dual">
           <div class="file-input-label" id="fontFileLabel">
-            <span class="file-name" id="fontFileName" data-i18n="noFileSelected">未选择文件</span>
+            <span class="file-name" id="fontFileName" data-i18n="noFileSelected">ファイルが選択されていません</span>
             <div class="file-input-actions">
-              <button type="button" class="btn-fetch file-action-remote" id="fetchFontBtn" data-i18n="remoteFetch">远程获取</button>
+              <button type="button" class="btn-fetch file-action-remote" id="fetchFontBtn" data-i18n="remoteFetch">リモート取得</button>
               <div class="file-local-trigger">
                 <input type="file" id="fontFile" accept=".bin" data-i18n-aria="selectLocalFont">
-                <span class="file-button" data-i18n="localSelect">本地选择</span>
+                <span class="file-button" data-i18n="localSelect">ローカル選択</span>
               </div>
             </div>
           </div>
@@ -397,19 +397,19 @@
         <div id="fontInfo" class="fw-info" style="display:none"></div>
       </section>
 
-      <button id="fontFlashBtn" disabled data-i18n="flashFont">刷入字库</button>
+      <button id="fontFlashBtn" disabled data-i18n="flashFont">フォントを書き込む</button>
     </div>
 
     <!-- DUMP CALIBRATION TAB -->
     <div class="tab-content" id="dump-content">
       <section class="section">
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="dumpWarning">
-          ⚠️ 仅需原厂固件刷机前备份一次。先<strong>正常开机进入使用界面</strong>（能显示信道、菜单），再连接 USB 并导出。
+          ⚠️ 純正ファームウェアの書き込み前に一度だけバックアップしてください。まず<strong>通常通り電源を入れて操作画面に入り</strong>（チャンネルやメニューが表示される状態）、USBを接続してからエクスポートします。
         </p>
-        <button id="dumpBtn" data-i18n="exportCalib">导出校准数据</button>
+        <button id="dumpBtn" data-i18n="exportCalib">校正データをエクスポート</button>
       </section>
       <div class="download-link" id="dumpDownload">
-        <a href="#" id="dumpLink" download="calibration.dat" data-i18n="downloadCalib">下载 calibration.dat</a>
+        <a href="#" id="dumpLink" download="calibration.dat" data-i18n="downloadCalib">calibration.dat をダウンロード</a>
       </div>
     </div>
 
@@ -417,23 +417,23 @@
     <div class="tab-content" id="restore-content">
       <section class="section">
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="restoreWarning">
-          ⚠️ 恢复前同样需<strong>正常开机进入使用界面</strong>后再连接 USB；写入完成后设备会自动重启。请使用与本机固件版本匹配的备份文件（512 字节）。
+          ⚠️ 復元前も同様に、<strong>通常通り電源を入れて操作画面に入って</strong>からUSBを接続してください。書き込み完了後、デバイスは自動的に再起動します。本機のファームウェアバージョンと一致するバックアップファイル（512バイト）を使用してください。
         </p>
-        <label data-i18n="selectCalibFile">选择校准备份文件 (.dat)</label>
+        <label data-i18n="selectCalibFile">校正バックアップファイルを選択 (.dat)</label>
         <div class="file-input-wrapper file-input-wrapper--dual">
           <div class="file-input-label" id="calibFileLabel">
-            <span class="file-name" id="calibFileName" data-i18n="noFileSelected">未选择文件</span>
+            <span class="file-name" id="calibFileName" data-i18n="noFileSelected">ファイルが選択されていません</span>
             <div class="file-input-actions">
-              <button type="button" class="btn-fetch file-action-remote" id="checkCalibBtn" data-i18n="calibCheckDesc">检查校准</button>
+              <button type="button" class="btn-fetch file-action-remote" id="checkCalibBtn" data-i18n="calibCheckDesc">校正チェック</button>
               <div class="file-local-trigger">
                 <input type="file" id="calibFile" accept=".dat">
-                <span class="file-button" data-i18n="localSelect">本地选择</span>
+                <span class="file-button" data-i18n="localSelect">ローカル選択</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <button id="restoreBtn" disabled data-i18n="restoreCalib">恢复校准数据</button>
+      <button id="restoreBtn" disabled data-i18n="restoreCalib">校正データを復元</button>
     </div>
 
     <!-- CALIBRATION CHECK MODAL -->
@@ -441,30 +441,30 @@
       <div class="calib-check-modal__backdrop" data-calib-check-dismiss tabindex="-1" aria-hidden="true"></div>
       <div class="calib-check-modal__panel" role="dialog" aria-modal="true" aria-labelledby="calibCheckModalTitle">
         <div class="calib-check-modal__header">
-          <h2 id="calibCheckModalTitle" class="calib-check-modal__title" data-i18n="calibCheckTitle">校准数据检查</h2>
-          <button type="button" class="calib-check-modal__close" data-calib-check-dismiss aria-label="关闭" data-i18n-aria="close">&times;</button>
+          <h2 id="calibCheckModalTitle" class="calib-check-modal__title" data-i18n="calibCheckTitle">校正データチェック</h2>
+          <button type="button" class="calib-check-modal__close" data-calib-check-dismiss aria-label="閉じる" data-i18n-aria="close">&times;</button>
         </div>
         <div class="calib-check-modal__toolbar">
-          <button type="button" class="btn-fetch" id="calibReadDeviceBtn" data-i18n="calibReadDevice">读取设备校准</button>
-          <button type="button" class="btn-secondary" id="calibLoadBackupBtn" data-i18n="calibLoadBackup">加载备份校准文件</button>
-          <button type="button" class="btn-secondary" id="calibExportBackupBtn" data-i18n="calibExportBackup">导出备份校准</button>
+          <button type="button" class="btn-fetch" id="calibReadDeviceBtn" data-i18n="calibReadDevice">デバイスの校正を読み込む</button>
+          <button type="button" class="btn-secondary" id="calibLoadBackupBtn" data-i18n="calibLoadBackup">バックアップ校正を読み込む</button>
+          <button type="button" class="btn-secondary" id="calibExportBackupBtn" data-i18n="calibExportBackup">バックアップ校正をエクスポート</button>
         </div>
         <div class="calib-check-modal__table-wrap">
           <table class="calib-check-table" id="calibCheckTable">
             <thead>
               <tr>
-                <th class="calib-check-table__col-desc" data-i18n="calibCheckDesc">校准解读</th>
-                <th class="calib-check-table__col-data" data-i18n="calibCheckOffical">官方/v4+ 校准地址(0x1E00)</th>
-                <th class="calib-check-table__col-data" data-i18n="calibCheckThird">第三方固件/v5+ 校准地址(0xB000)</th>
-                <th class="calib-check-table__col-backup" data-i18n="calibCheckBackup">备份校准</th>
+                <th class="calib-check-table__col-desc" data-i18n="calibCheckDesc">校正解説</th>
+                <th class="calib-check-table__col-data" data-i18n="calibCheckOffical">公式/v4+ 校正アドレス (0x1E00)</th>
+                <th class="calib-check-table__col-data" data-i18n="calibCheckThird">サードパーティ/v5+ 校正アドレス (0xB000)</th>
+                <th class="calib-check-table__col-backup" data-i18n="calibCheckBackup">バックアップ校正</th>
               </tr>
             </thead>
             <tbody id="calibCheckBody"></tbody>
           </table>
         </div>
         <div class="calib-check-modal__actions">
-          <button type="button" id="calibWriteOfficialBtn" data-i18n="calibWriteOfficial">写入官方地址</button>
-          <button type="button" id="calibWriteThirdPartyBtn" data-i18n="calibWriteThirdParty">写入第三方地址</button>
+          <button type="button" id="calibWriteOfficialBtn" data-i18n="calibWriteOfficial">公式アドレスに書き込む</button>
+          <button type="button" id="calibWriteThirdPartyBtn" data-i18n="calibWriteThirdParty">サードパーティアドレスに書き込む</button>
         </div>
       </div>
     </div>
@@ -485,8 +485,8 @@
               <line x1="10" y1="18" x2="10" y2="20"/>
               <line x1="14" y1="18" x2="14" y2="20"/>
             </svg>
-            <span data-i18n="writefreqNote">提示：写频功能仅供叮咚鸡（Dondji）固件使用。如缺字，</span>
-            <a href="https://docs.qq.com/form/page/DZkNzc2pzcVNKRHZV" target="_blank" rel="noopener noreferrer" class="writefreq-char-link" data-i18n="clickSupplement">点击补充</a>
+            <span data-i18n="writefreqNote">ヒント：周波数書き込み機能はおやびん (Dondji) ファームウェア専用です。文字が不足している場合は、</span>
+            <a href="https://docs.qq.com/form/page/DZkNzc2pzcVNKRHZV" target="_blank" rel="noopener noreferrer" class="writefreq-char-link" data-i18n="clickSupplement">こちらから追加をリクエスト</a>
           </span>
         </p>
 
@@ -499,23 +499,23 @@
         <div class="writefreq-toolbar-head">
           <div class="writefreq-actions-split">
             <div class="writefreq-actions-left">
-              <button type="button" class="btn-inline btn-with-icon" id="writefreqReadBtn" title="从设备读取" data-i18n-title="readFromDevice">
+              <button type="button" class="btn-inline btn-with-icon" id="writefreqReadBtn" title="デバイスから読み込む" data-i18n-title="readFromDevice">
                 <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
-                <span data-i18n="readFromDevice">从设备读取</span>
+                <span data-i18n="readFromDevice">デバイスから読み込む</span>
               </button>
-              <button type="button" class="btn-inline btn-with-icon" id="writefreqWriteBtn" title="写入设备" data-i18n-title="writeToDevice">
+              <button type="button" class="btn-inline btn-with-icon" id="writefreqWriteBtn" title="デバイスに書き込む" data-i18n-title="writeToDevice">
                 <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span>
-                <span data-i18n="writeToDevice">写入设备</span>
+                <span data-i18n="writeToDevice">デバイスに書き込む</span>
               </button>
             </div>
             <div class="writefreq-actions-right">
-              <button type="button" class="btn-inline btn-secondary btn-with-icon" id="writefreqExportBtn" title="导出 Excel" data-i18n-title="exportExcel">
+              <button type="button" class="btn-inline btn-secondary btn-with-icon" id="writefreqExportBtn" title="Excelをエクスポート" data-i18n-title="exportExcel">
                 <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg></span>
-                <span data-i18n="exportExcel">导出 Excel</span>
+                <span data-i18n="exportExcel">Excel出力</span>
               </button>
-              <button type="button" class="btn-inline btn-secondary btn-with-icon" id="writefreqImportBtn" title="导入 Excel" data-i18n-title="importExcel">
+              <button type="button" class="btn-inline btn-secondary btn-with-icon" id="writefreqImportBtn" title="Excelをインポート" data-i18n-title="importExcel">
                 <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 11v6"/><path d="M9 14h6"/></svg></span>
-                <span data-i18n="importExcel">导入 Excel</span>
+                <span data-i18n="importExcel">Excel読込</span>
               </button>
             </div>
           </div>
@@ -527,33 +527,33 @@
         <table class="writefreq-table" id="writefreqTable">
           <thead>
             <tr>
-              <th class="wf-drag-th" title="拖动排序" data-i18n-title="dragSort">⠿</th>
-              <th data-i18n="freqChannel">信道号</th>
-              <th data-i18n="freqName">信道名<br><span class="th-sub" data-i18n="freqNameSub">UTF-8 最长 15 字节</span></th>
-              <th data-i18n="freqReceive">接收频率<br><span class="th-sub" data-i18n="freqMHz">MHz</span></th>
-              <th data-i18n="freqPower">功率<br><span class="th-sub" data-i18n="freqPowerSub">（排除 USER）</span></th>
-              <th data-i18n="freqRxDCS">接收数字亚音<br><span class="th-sub" data-i18n="freqDCS">DCS</span></th>
-              <th data-i18n="freqRxCTCSS">接收模拟亚音<br><span class="th-sub" data-i18n="freqCTCSS">CTCSS</span></th>
-              <th data-i18n="freqTxDCS">发射数字亚音<br><span class="th-sub" data-i18n="freqDCS">DCS</span></th>
-              <th data-i18n="freqTxCTCSS">发射模拟亚音<br><span class="th-sub" data-i18n="freqCTCSS">CTCSS</span></th>
-              <th data-i18n="freqOffsetDir">频差方向<br><span class="th-sub" data-i18n="freqOffsetDirSub">MENU 频差方向</span></th>
-              <th data-i18n="freqOffset">频差频率<br><span class="th-sub" data-i18n="freqMHz">MHz</span></th>
-              <th data-i18n="freqMode">调制模式<br><span class="th-sub" data-i18n="freqModeSub">FM/AM/USB</span></th>
-              <th data-i18n="freqStep">步进<br><span class="th-sub" data-i18n="freqkHz">kHz</span></th>
-              <th data-i18n="freqList">信道列表<br><span class="th-sub" data-i18n="freqListSub">多选参与</span></th>
-              <th class="wf-delete-th" scope="col" aria-label="清空本行" data-i18n-aria="clearRow"></th>
+              <th class="wf-drag-th" title="ドラッグして並べ替え" data-i18n-title="dragSort">⠿</th>
+              <th data-i18n="freqChannel">CH番号</th>
+              <th data-i18n="freqName">チャンネル名<br><span class="th-sub" data-i18n="freqNameSub">UTF-8 最大15バイト</span></th>
+              <th data-i18n="freqReceive">受信周波数<br><span class="th-sub" data-i18n="freqMHz">MHz</span></th>
+              <th data-i18n="freqPower">出力<br><span class="th-sub" data-i18n="freqPowerSub">（USER除外）</span></th>
+              <th data-i18n="freqRxDCS">受信 DCS<br><span class="th-sub" data-i18n="freqDCS">DCS</span></th>
+              <th data-i18n="freqRxCTCSS">受信 CTCSS<br><span class="th-sub" data-i18n="freqCTCSS">CTCSS</span></th>
+              <th data-i18n="freqTxDCS">送信 DCS<br><span class="th-sub" data-i18n="freqDCS">DCS</span></th>
+              <th data-i18n="freqTxCTCSS">送信 CTCSS<br><span class="th-sub" data-i18n="freqCTCSS">CTCSS</span></th>
+              <th data-i18n="freqOffsetDir">シフト方向<br><span class="th-sub" data-i18n="freqOffsetDirSub">MENU シフト方向</span></th>
+              <th data-i18n="freqOffset">シフト周波数<br><span class="th-sub" data-i18n="freqMHz">MHz</span></th>
+              <th data-i18n="freqMode">変調モード<br><span class="th-sub" data-i18n="freqModeSub">FM/AM/USB</span></th>
+              <th data-i18n="freqStep">ステップ<br><span class="th-sub" data-i18n="freqkHz">kHz</span></th>
+              <th data-i18n="freqList">CHリスト<br><span class="th-sub" data-i18n="freqListSub">スキャン対象</span></th>
+              <th class="wf-delete-th" scope="col" aria-label="行をクリア" data-i18n-aria="clearRow"></th>
             </tr>
           </thead>
           <tbody id="writefreqTbody"></tbody>
         </table>
       </div>
-      <div class="writefreq-pagination" id="writefreqPagination" aria-label="写频分页">
-        <button type="button" class="btn-inline btn-secondary" id="writefreqPagePrev" data-i18n="prevPage">上一页</button>
-        <span class="writefreq-page-info" id="writefreqPageInfo" aria-live="polite" data-i18n="freqPageInfo">共 1024 条 · 已填写 0 条 · 第 1 / 103 页 · 每页 10 信道</span>
-        <button type="button" class="btn-inline btn-secondary" id="writefreqPageNext" data-i18n="nextPage">下一页</button>
+      <div class="writefreq-pagination" id="writefreqPagination" aria-label="周波数ページネーション">
+        <button type="button" class="btn-inline btn-secondary" id="writefreqPagePrev" data-i18n="prevPage">前へ</button>
+        <span class="writefreq-page-info" id="writefreqPageInfo" aria-live="polite" data-i18n="freqPageInfo">全 1024 件 · 入力済 0 件 · 1 / 103 ページ · 10チャンネル/ページ</span>
+        <button type="button" class="btn-inline btn-secondary" id="writefreqPageNext" data-i18n="nextPage">次へ</button>
         <label class="writefreq-page-size-label" for="writefreqPageSize">
-          <span data-i18n="freqRowsPerPage">每页行数</span>
-          <select id="writefreqPageSize" data-i18n-title="freqRowsPerPageTitle" title="每页最多 200 行">
+          <span data-i18n="freqRowsPerPage">表示行数</span>
+          <select id="writefreqPageSize" data-i18n-title="freqRowsPerPageTitle" title="1ページ最大200行">
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
@@ -569,37 +569,37 @@
     <div class="tab-content" id="mdcbook-content">
       <section class="section">
         <p class="mdcbook-lead" data-i18n="mdcbookLead">
-          MDC1200 通讯录：将 MDC ID 与呼号（英文/数字，最长 6 字符，如 BD1AHN）写入电台。固件收到匹配 ID 时，弹窗直接显示呼号；未匹配则仍显示 4 位十六进制 ID。
+          MDC1200 アドレス帳：MDC ID とコールサイン（英数字、最大6文字、例: BD1AHN）をトランシーバーに書き込みます。一致する ID を受信すると、ファームウェアはポップアップでコールサインを直接表示します。一致しない場合は従来の 4 桁の 16 進数 ID が表示されます。
         </p>
         <p class="mdcbook-meta" data-i18n="mdcbookMeta">
-          存储：SPI <code>0x011000</code> 独立 4KB 扇区（校准区之后，与校准 <code>0x010000</code> 不同扇区）。最多 400 条，每条 10 字节（ID 2B + 呼号字段 8B，实际最长 6 字符），含 16 字节表头。不占用游戏固件电子书区 <code>0x1E8000–0x200000</code>，也不与 AUTH / Slot3 / 拼音 / 语音重叠。恢复出厂（OEM 擦除到 0xF000）不会清掉本区。注意：「备份配置」只备份 <code>0x00A000</code> 设置区，<strong>不含本通讯录</strong>；请用本页 CSV 导出/导入。
+          ストレージ：SPI <code>0x011000</code> 独立 4KB セクタ（校正エリアの後、校正 <code>0x010000</code> とは異なるセクタ）。最大 400 件、1件あたり 10 バイト（ID 2B + コールサイン 8B、実際は最大 6 文字）、16 バイトのヘッダーを含む。ゲームファームウェアの電子書エリア <code>0x1E8000–0x200000</code> を占有せず、AUTH / Slot3 / ピンイン / 音声とも重複しません。工場出荷時リセット（OEM による 0xF000 への消去）でもこのエリアは消去されません。「設定のバックアップ」は <code>0x00A000</code> の設定エリアのみをバックアップするため、<strong>このアドレス帳は含まれません</strong>。本ページの CSV エクスポート/インポートを使用してください。
         </p>
       </section>
 
       <section class="section mdcbook-toolbar">
         <div class="writefreq-actions-split">
           <div class="writefreq-actions-left">
-            <button type="button" class="btn-inline btn-with-icon" id="mdcbookReadBtn" title="从设备读取" data-i18n-title="readFromDevice">
+            <button type="button" class="btn-inline btn-with-icon" id="mdcbookReadBtn" title="デバイスから読み込む" data-i18n-title="readFromDevice">
               <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
-              <span data-i18n="readFromDevice">从设备读取</span>
+              <span data-i18n="readFromDevice">デバイスから読み込む</span>
             </button>
-            <button type="button" class="btn-inline btn-with-icon" id="mdcbookWriteBtn" title="写入设备" data-i18n-title="writeToDevice">
+            <button type="button" class="btn-inline btn-with-icon" id="mdcbookWriteBtn" title="デバイスに書き込む" data-i18n-title="writeToDevice">
               <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span>
-              <span data-i18n="writeToDevice">写入设备</span>
+              <span data-i18n="writeToDevice">デバイスに書き込む</span>
             </button>
-            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookAddBtn" title="添加一行" data-i18n-title="mdcbookAddRow">
+            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookAddBtn" title="行を追加" data-i18n-title="mdcbookAddRow">
               <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-              <span data-i18n="mdcbookAddRow">添加一行</span>
+              <span data-i18n="mdcbookAddRow">行を追加</span>
             </button>
           </div>
           <div class="writefreq-actions-right">
-            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookExportBtn" title="导出 CSV" data-i18n-title="mdcbookExport">
+            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookExportBtn" title="CSVをエクスポート" data-i18n-title="mdcbookExport">
               <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg></span>
-              <span data-i18n="mdcbookExport">导出 CSV</span>
+              <span data-i18n="mdcbookExport">CSV出力</span>
             </button>
-            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookImportBtn" title="导入 CSV" data-i18n-title="mdcbookImport">
+            <button type="button" class="btn-inline btn-secondary btn-with-icon" id="mdcbookImportBtn" title="CSVをインポート" data-i18n-title="mdcbookImport">
               <span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span>
-              <span data-i18n="mdcbookImport">导入 CSV</span>
+              <span data-i18n="mdcbookImport">CSV読込</span>
             </button>
           </div>
         </div>
@@ -613,9 +613,9 @@
             <thead>
               <tr>
                 <th data-i18n="mdcbookColIndex">#</th>
-                <th data-i18n="mdcbookColId">MDC ID<br><span class="th-sub" data-i18n="mdcbookColIdSub">十六进制 0001–FFFF</span></th>
-                <th data-i18n="mdcbookColName">呼号<br><span class="th-sub" data-i18n="mdcbookColNameSub">A–Z / 0–9，最长 6</span></th>
-                <th class="mdcbook-delete-th" scope="col" aria-label="删除本行" data-i18n-aria="clearRow"></th>
+                <th data-i18n="mdcbookColId">MDC ID<br><span class="th-sub" data-i18n="mdcbookColIdSub">16進数 0001–FFFF</span></th>
+                <th data-i18n="mdcbookColName">コールサイン<br><span class="th-sub" data-i18n="mdcbookColNameSub">A–Z / 0–9、最大 6</span></th>
+                <th class="mdcbook-delete-th" scope="col" aria-label="行を削除" data-i18n-aria="clearRow"></th>
               </tr>
             </thead>
             <tbody id="mdcbookTbody"></tbody>
@@ -628,21 +628,21 @@
     <div class="tab-content" id="logo-content">
       <section class="section">
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="logoDesc1">
-          上传自定义 128×64 开机图片到对讲机。支持 PNG、JPG、BMP 等格式，图片会自动缩放并转为单色位图。
-          在菜单「开机画面」中选择「自定义」即可显示。
+          カスタムの 128×64 起動画像をトランシーバーにアップロードします。PNG、JPG、BMP などの形式に対応しており、画像は自動的にリサイズされてモノクロビットマップに変換されます。
+          メニューの「起動画面」で「カスタム」を選択すると表示されます。
         </p>
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="logoWarning">
-          ⚠️ 请先<strong>正常开机进入使用界面</strong>后再连接 USB 操作（与刷字库、备份校准相同，无需 BOOT 模式）。
+          ⚠️️ USB操作を行う前に、必ず<strong>通常通り電源を入れて操作画面に入って</strong>ください（フォント書込や校正バックアップと同様にBOOTモードは不要です）。
         </p>
       </section>
 
       <section class="section">
-        <label data-i18n="selectImage">选择图片</label>
+        <label data-i18n="selectImage">画像を選択</label>
         <div class="file-input-wrapper">
-          <input type="file" id="logoImageFile" accept="image/*" aria-label="选择开机图片">
+          <input type="file" id="logoImageFile" accept="image/*" aria-label="起動画像を選択">
           <div class="file-input-label" id="logoImageFileLabel">
-            <span class="file-name" id="logoImageFileName" data-i18n="noFileSelected">未选择文件</span>
-            <span class="file-button" data-i18n="selectImage">选择图片</span>
+            <span class="file-name" id="logoImageFileName" data-i18n="noFileSelected">ファイルが選択されていません</span>
+            <span class="file-button" data-i18n="selectImage">画像を選択</span>
           </div>
         </div>
       </section>
@@ -650,33 +650,33 @@
       <section class="section">
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
           <div>
-            <label for="logoThreshold" style="display:block;margin-bottom:4px;" data-i18n="threshold">阈值</label>
+            <label for="logoThreshold" style="display:block;margin-bottom:4px;" data-i18n="threshold">しきい値</label>
             <input type="range" id="logoThreshold" min="0" max="255" value="128" style="width:160px;">
             <span id="logoThresholdValue" style="margin-left:8px;">128</span>
           </div>
           <div>
-            <label style="display:block;margin-bottom:4px;" data-i18n="invert">反色</label>
+            <label style="display:block;margin-bottom:4px;" data-i18n="invert">反転</label>
             <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;">
               <input type="checkbox" id="logoInvert">
-              <span data-i18n="invertBW">反转黑白</span>
+              <span data-i18n="invertBW">白黒反転</span>
             </label>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <label data-i18n="preview">预览</label>
+        <label data-i18n="preview">プレビュー</label>
         <div style="background:#1a1a2e;border:1px solid #30363d;border-radius:6px;padding:8px;display:inline-block;">
           <canvas id="logoPreviewCanvas" width="128" height="64" style="width:256px;height:128px;image-rendering:pixelated;display:block;"></canvas>
         </div>
       </section>
 
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <button id="logoUploadBtn" disabled data-i18n="uploadLogo">上传开机图片</button>
-        <button id="logoReadBtn" data-i18n="readLogo">读取开机图片</button>
+        <button id="logoUploadBtn" disabled data-i18n="uploadLogo">起動画像をアップロード</button>
+        <button id="logoReadBtn" data-i18n="readLogo">起動画像を読み込む</button>
       </div>
       <div class="download-link" id="logoDownload" style="display:none;">
-        <a href="#" id="logoDownloadLink" download="boot_logo.png" data-i18n="downloadLogo">下载 boot_logo.png</a>
+        <a href="#" id="logoDownloadLink" download="boot_logo.png" data-i18n="downloadLogo">boot_logo.png をダウンロード</a>
       </div>
     </div>
 
@@ -684,18 +684,18 @@
     <div class="tab-content" id="backupcfg-content">
       <section class="section">
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="backupCfgDesc1">
-          备份设备配置数据（菜单设置、按键设置等），用于恢复出厂设置后快速恢复所有设置项。
+          デバイスの設定データ（メニュー設定、キー設定など）をバックアップし、初期化後にすべての設定項目を素早く復元できるようにします。
         </p>
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="backupCfgWarning">
-          ⚠️ 请先<strong>正常开机进入使用界面</strong>后再连接 USB 进行备份。
+          ⚠️ バックアップを行う前に、必ず<strong>通常通り電源を入れて操作画面に入って</strong>からUSBを接続してください。
         </p>
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="backupCfgUsage">
-          使用场景：先备份配置 → 刷了其它固件又刷回来后，清除了全部数据 → 通过"恢复配置"恢复所有设置项。
+          利用シーン：設定をバックアップ → 他のファームウェアを書き込んでから元に戻し、全データがクリアされた後 → 「設定復元」により全設定項目を復元。
         </p>
-        <button id="backupCfgBtn" data-i18n="exportCfgData">导出配置数据</button>
+        <button id="backupCfgBtn" data-i18n="exportCfgData">設定データをエクスポート</button>
       </section>
       <div class="download-link" id="backupCfgDownload">
-        <a href="#" id="backupCfgLink" download="config_backup.dat" data-i18n="downloadCfgBackup">下载 config_backup.dat</a>
+        <a href="#" id="backupCfgLink" download="config_backup.dat" data-i18n="downloadCfgBackup">config_backup.dat をダウンロード</a>
       </div>
     </div>
 
@@ -703,28 +703,28 @@
     <div class="tab-content" id="restorecfg-content">
       <section class="section">
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="restoreCfgDesc">
-          恢复之前备份的配置数据，快速还原所有菜单设置项。
+          以前にバックアップした設定データを復元し、すべてのメニュー設定を素早く元に戻します。
         </p>
         <p style="font-size:0.85em;color:#f0883e;margin-bottom:12px;" data-i18n="restoreCfgWarning">
-          ⚠️ 恢复前同样需<strong>正常开机进入使用界面</strong>后再连接 USB；写入完成后设备会自动重启。
+          ⚠️ 復元前も同様に、<strong>通常通り電源を入れて操作画面に入って</strong>からUSBを接続してください。書き込み完了後、デバイスは自動的に再起動します。
         </p>
-        <label data-i18n="selectCfgBackup">选择配置备份文件 (.dat)</label>
+        <label data-i18n="selectCfgBackup">設定バックアップファイルを選択 (.dat)</label>
         <div class="file-input-wrapper">
           <input type="file" id="cfgBackupFile" accept=".dat">
           <div class="file-input-label" id="cfgBackupFileLabel">
-            <span class="file-name" id="cfgBackupFileName" data-i18n="noFileSelected">未选择文件</span>
-            <span class="file-button" data-i18n="selectFile">选择文件</span>
+            <span class="file-name" id="cfgBackupFileName" data-i18n="noFileSelected">ファイルが選択されていません</span>
+            <span class="file-button" data-i18n="selectFile">ファイルを選択</span>
           </div>
         </div>
       </section>
-      <button id="restoreCfgBtn" disabled data-i18n="restoreCfgData">恢复配置数据</button>
+      <button id="restoreCfgBtn" disabled data-i18n="restoreCfgData">設定データを復元</button>
     </div>
 
     <!-- TOOLBOX TAB -->
     <div class="tab-content" id="toolbox-content">
       <section class="section">
         <p style="font-size:0.85em;color:#8b949e;margin-bottom:12px;" data-i18n="toolboxDesc">
-          应急工具箱提供校准文件和原厂固件的下载，用于救砖或恢复出厂状态。
+          緊急ツールボックスでは、文鎮からの復旧や工場出荷時状態への復元用の校正ファイルや純正ファームウェアを提供しています。
         </p>
       </section>
       <div class="toolbox-grid">
@@ -736,8 +736,8 @@
               <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxDowngrade">UVK1(8)恢复原厂教程</div>
-          <div class="toolbox-card-filename" data-i18n="clickDetail">点击查看详情</div>
+          <div class="toolbox-card-title" data-i18n="toolboxDowngrade">UVK1(8) 純正復元チュートリアル</div>
+          <div class="toolbox-card-filename" data-i18n="clickDetail">詳細を見る</div>
         </button>
         <a href="archive/calibration_k1.dat" download class="toolbox-card">
           <div class="toolbox-card-icon">
@@ -749,7 +749,7 @@
               <path d="M9 4.6a1.65 1.65 0 0 1-.5 1.5l-1 1a2 2 0 0 0-2.8 2.8l1-1a1.65 1.65 0 0 1 .5-1.5"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1Calib">K1 校准文件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1Calib">K1 校正ファイル</div>
           <div class="toolbox-card-filename">calibration_k1.dat</div>
         </a>
         <a href="archive/calibration_k6v3.dat" download class="toolbox-card">
@@ -762,7 +762,7 @@
               <path d="M9 4.6a1.65 1.65 0 0 1-.5 1.5l-1 1a2 2 0 0 0-2.8 2.8l1-1a1.65 1.65 0 0 1 .5-1.5"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK6Calib">K6 V3 校准文件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK6Calib">K6 V3 校正ファイル</div>
           <div class="toolbox-card-filename">calibration_k6v3.dat</div>
         </a>
         <a href="archive/quansheng.k1.stock.firmware.v7.02.02.bin" download class="toolbox-card">
@@ -773,7 +773,7 @@
               <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1StockEn">K1 原厂英文固件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1StockEn">K1 純正英語ファームウェア</div>
           <div class="toolbox-card-filename">quansheng.k1.stock.firmware.v7.02.02.bin</div>
         </a>
         <a href="archive/quansheng.k1.stock.firmware.v7.03.01.bin" download class="toolbox-card">
@@ -784,7 +784,7 @@
               <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1StockEnV703">K1 原厂英文固件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1StockEnV703">K1 純正英語ファームウェア</div>
           <div class="toolbox-card-filename">quansheng.k1.stock.firmware.v7.03.01.bin</div>
         </a>
         <a href="archive/quansheng.k5v3.stock.firmware.v7.00.11.bin" download class="toolbox-card">
@@ -795,7 +795,7 @@
               <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK5V3StockEn">K5 V3 原厂英文固件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK5V3StockEn">K5 V3 純正英語ファームウェア</div>
           <div class="toolbox-card-filename">quansheng.k5v3.stock.firmware.v7.00.11.bin</div>
         </a>
         <a href="archive/k1_zh_v7.02.07publish.bin" download class="toolbox-card">
@@ -806,7 +806,7 @@
               <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1StockCn">K1 官方中文固件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1StockCn">K1 公式中国語ファームウェア</div>
           <div class="toolbox-card-filename">k1_zh_v7.02.07publish.bin</div>
         </a>
         <a href="archive/官方固件_K5_V.7.01.09.bin" download class="toolbox-card">
@@ -817,7 +817,7 @@
               <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK5V3StockCn">K5 V3 官方固件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK5V3StockCn">K5 V3 公式ファームウェア</div>
           <div class="toolbox-card-filename">官方固件_K5_V.7.01.09.bin</div>
         </a>
         <a href="archive/UV-K1写频软件.rar" download class="toolbox-card">
@@ -830,7 +830,7 @@
               <polyline points="10 9 9 9 8 9"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1CPS">K1 官方写频软件</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1CPS">K1 公式CPS（プログラミングソフト）</div>
           <div class="toolbox-card-filename">UV-K1写频软件.rar</div>
         </a>
         <button type="button" class="toolbox-card" id="k1InitFreqDl">
@@ -840,8 +840,8 @@
               <polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1InitFreq">频率初始化(应急)</div>
-          <div class="toolbox-card-tip" data-i18n="toolboxK1InitFreqTip">如果频率有问题，用原厂写频软件写频导入</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1InitFreq">周波数初期化（緊急）</div>
+          <div class="toolbox-card-tip" data-i18n="toolboxK1InitFreqTip">周波数に問題がある場合、公式CPSソフトで書き込んでインポートしてください</div>
           <div class="toolbox-card-filename">K1-V3中文-初始频率设置.cxf</div>
         </button>
         <a href="archive/ZW-show_voice_resource_ch_en_alaw.svres" download class="toolbox-card">
@@ -852,21 +852,21 @@
               <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
             </svg>
           </div>
-          <div class="toolbox-card-title" data-i18n="toolboxK1VoiceRes">K1 中文字库语音资源</div>
+          <div class="toolbox-card-title" data-i18n="toolboxK1VoiceRes">K1 中国語フォント音声リソース</div>
           <div class="toolbox-card-filename">ZW-show_voice_resource_ch_en_alaw.svres</div>
         </a>
       </div>
     </div>
 
-    <!-- 日志默认插入位置（写频标签下会移到 #logDockWritefreq） -->
+    <!-- ログのデフォルト挿入位置 -->
     <div id="logAnchorDefault" class="log-anchor-default" aria-hidden="true"></div>
     <!-- CONSOLE LOG -->
     <section class="log-container" id="logContainerSection">
-      <button class="log-toggle" id="logToggle" data-i18n="showLog">显示日志</button>
+      <button class="log-toggle" id="logToggle" data-i18n="showLog">ログを表示</button>
       <div class="log" id="log"></div>
     </section>
 
-    <!-- PROGRESS BAR（读取/写入进度，置于日志区域下方） -->
+    <!-- PROGRESS BAR -->
     <section class="progress-container" id="progressContainer">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
@@ -875,11 +875,11 @@
     </section>
 
     <aside class="info-box">
-      <strong data-i18n="note">注意：</strong><span data-i18n="browserNote">需要 Chrome / Edge / Opera 浏览器。</span><strong data-i18n="flashFirmwareBoot">仅刷固件</strong><span data-i18n="enterBootMode">需进入 BOOT 模式（按住 PTT 开机）。</span><strong data-i18n="otherOperations">刷字库、备份校准、恢复校准、开机图片</strong><span data-i18n="normalMode">均在正常开机使用界面下连接 USB 操作。</span>
+      <strong data-i18n="note">注意：</strong><span data-i18n="browserNote">Chrome / Edge / Opera ブラウザが必要です。</span><strong data-i18n="flashFirmwareBoot">ファームウェア書込のみ</strong><span data-i18n="enterBootMode">BOOTモードに入る必要があります（PTTを押しながら起動）。</span><strong data-i18n="otherOperations">フォント書込、校正のバックアップ/復元、起動画像</strong><span data-i18n="normalMode">はいずれも通常の起動画面の状態でUSB接続して操作します。</span>
     </aside>
 
     <footer class="footer">
-      <span data-i18n="footerDev">固件 & 工具由 BD1AHN 开发</span>
+      <span data-i18n="footerDev">ファームウェア & ツール開発: BD1AHN</span>
       &middot; Based on <a href="https://github.com/armel/uv-k1-k5v3-firmware-custom" target="_blank" data-i18n="footerUVTools">UVTools2</a>
       &middot; <a href="https://github.com/EthanYan6/Dondji" target="_blank">GitHub</a>
     </footer>
@@ -890,44 +890,44 @@
   <div id="coffeeModal" class="coffee-modal coffee-modal--donation" hidden aria-hidden="true">
     <div class="coffee-modal__backdrop" data-coffee-dismiss tabindex="-1" aria-hidden="true"></div>
     <div class="coffee-modal__panel" role="dialog" aria-modal="true" aria-labelledby="coffeeModalTitle">
-      <h2 id="coffeeModalTitle" class="coffee-modal__title" data-i18n="coffeeTitle">☕ 请作者喝杯咖啡</h2>
+      <h2 id="coffeeModalTitle" class="coffee-modal__title" data-i18n="coffeeTitle">☕ 作者にコーヒーをごちそうする</h2>
       <div class="coffee-modal__body">
         <div class="coffee-modal__left">
           <div class="coffee-modal__content">
             <p class="coffee-modal__text" data-i18n="coffeeText1">
-              感谢您使用叮咚鸡固件！维护这个网站和固件需要投入大量时间和精力，运营、开发、测试等都需要成本支持。
+              おやびんファームウェアをご利用いただきありがとうございます！このウェブサイトやファームウェアの維持には多大な時間と労力がかかり、運営、開発、テスト等にコストが必要です。
             </p>
             <p class="coffee-modal__text" data-i18n="coffeeText2">
-              如果这个项目对您有帮助，欢迎打赏支持！<strong>打赏时请备注您的呼号</strong>，方便我感谢您的支持！
+              このプロジェクトがお役に立ちましたら、ぜひご支援をお願いいたします！<strong>ご支援の際は、お礼を申し上げますので、コールサインを備考にご記載ください</strong>！
             </p>
             <div class="coffee-modal__qrcodes">
               <div class="coffee-modal__qrcode-item">
-                <img src="images/wechat_pay.jpg" alt="微信收款码" class="coffee-modal__qrcode-img">
-                <span class="coffee-modal__qrcode-label" data-i18n="wechatPay">微信支付</span>
+                <img src="images/wechat_pay.jpg" alt="WeChat Pay QRコード" class="coffee-modal__qrcode-img">
+                <span class="coffee-modal__qrcode-label" data-i18n="wechatPay">微信支付 (WeChat Pay)</span>
               </div>
               <div class="coffee-modal__qrcode-item">
-                <img src="images/ali_pay.jpg" alt="支付宝收款码" class="coffee-modal__qrcode-img">
-                <span class="coffee-modal__qrcode-label" data-i18n="aliPay">支付宝</span>
+                <img src="images/ali_pay.jpg" alt="Alipay QRコード" class="coffee-modal__qrcode-img">
+                <span class="coffee-modal__qrcode-label" data-i18n="aliPay">支付宝 (Alipay)</span>
               </div>
             </div>
           </div>
         </div>
         <div class="coffee-modal__right">
           <div class="donation-board">
-            <div class="donation-board__header" data-i18n="donationBoard">打赏榜单</div>
+            <div class="donation-board__header" data-i18n="donationBoard">寄付ランキング</div>
             <div class="donation-board__scroll">
               <table class="donation-board__table">
                 <thead>
                   <tr>
-                    <th data-i18n="donationTime">时间</th>
-                    <th data-i18n="donationName">昵称</th>
-                    <th data-i18n="donationAmount">金额</th>
-                    <th data-i18n="donationMessage">留言</th>
-                    <th data-i18n="donationSource">来源</th>
+                    <th data-i18n="donationTime">時間</th>
+                    <th data-i18n="donationName">ニックネーム</th>
+                    <th data-i18n="donationAmount">金額</th>
+                    <th data-i18n="donationMessage">メッセージ</th>
+                    <th data-i18n="donationSource">ソース</th>
                   </tr>
                 </thead>
                 <tbody id="donationTableBody">
-                  <tr><td colspan="5" class="donation-loading" data-i18n="loading">加载中...</td></tr>
+                  <tr><td colspan="5" class="donation-loading" data-i18n="loading">読み込み中...</td></tr>
                 </tbody>
               </table>
             </div>
@@ -935,8 +935,8 @@
         </div>
       </div>
       <div class="coffee-modal__footer">
-        <p class="coffee-modal__notice" data-i18n="coffeeNotice">量力而行，心意至上，拒绝攀比，自愿为主。</p>
-        <button type="button" class="coffee-modal__btn" id="coffeeModalCloseBtn" data-i18n="exit">退出</button>
+        <p class="coffee-modal__notice" data-i18n="coffeeNotice">無理のない範囲で、お気持ちを大切に。比較せず、自主的なご支援をお願いします。</p>
+        <button type="button" class="coffee-modal__btn" id="coffeeModalCloseBtn" data-i18n="exit">閉じる</button>
       </div>
     </div>
   </div>
@@ -944,37 +944,37 @@
   <div id="downgradeGuideModal" class="coffee-modal coffee-modal--wide" hidden aria-hidden="true">
     <div class="coffee-modal__backdrop" data-downgrade-dismiss tabindex="-1" aria-hidden="true"></div>
     <div class="coffee-modal__panel" role="dialog" aria-modal="true" aria-labelledby="downgradeGuideModalTitle">
-      <h2 id="downgradeGuideModalTitle" class="coffee-modal__title" data-i18n="downgradeTitle">🔧 UVK1(8)恢复原厂教程</h2>
+      <h2 id="downgradeGuideModalTitle" class="coffee-modal__title" data-i18n="downgradeTitle">🔧 UVK1(8) 純正復元チュートリアル</h2>
       <div class="coffee-modal__content">
         <p class="coffee-modal__text">
-          <strong data-i18n="downgradeSubtitle">用叮咚鸡菜单「恢复出厂 → 原厂(OEM)」擦除写频密钥后，再用官方 CPS 刷回原厂固件：</strong>
+          <strong data-i18n="downgradeSubtitle">おやびんメニューの「初期化 → 純正(OEM)」で周波数書き込み用キーを消去した後、公式CPSで純正ファームウェアに戻します：</strong>
         </p>
         <ol class="downgrade-steps" style="text-align: left; margin: 12px 0; padding-left: 20px; color: var(--text-muted); line-height: 1.6; font-size: 0.9em;">
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">解锁全部菜单：</strong><br>
-            <span data-i18n="downgradeStep1Content">关机后，同时按住 PTT 与紧挨其下方的侧键开机，进入完整菜单。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">全メニューのロック解除：</strong><br>
+            <span data-i18n="downgradeStep1Content">電源を切り、PTTとすぐ下のサイドボタンを同時に押しながら起動し、フルメニューに入ります。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">执行「原厂」恢复：</strong><br>
-            <span data-i18n="downgradeStep2Content">打开「其它」→「恢复出厂」→ 选择「原厂」(OEM) → 确认。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">「純正」初期化の実行：</strong><br>
+            <span data-i18n="downgradeStep2Content">「その他」＞「初期化」＞「純正」(OEM) を選択して確定します。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">关机：</strong><br>
-            <span data-i18n="downgradeStep3Content">屏幕显示「请关机」后关机（英文界面为 PWR OFF）。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">電源オフ：</strong><br>
+            <span data-i18n="downgradeStep3Content">画面に「電源を切ってください」と表示されたら電源を切ります（英語表示の場合は PWR OFF）。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">官方 CPS 刷原厂固件：</strong><br>
-            <span data-i18n="downgradeStep4Content">用官方写频软件：设备 → 升级程序 → 升级。原厂固件可在本页应急工具箱下载。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">公式CPSで純正ファームウェアを書き込む：</strong><br>
+            <span data-i18n="downgradeStep4Content">公式プログラミングソフトを使用：デバイス ＞ アップデートプログラム ＞ アップデート。純正ファームウェアは本ページの緊急ツールボックスからダウンロードできます。</span>
           </li>
         </ol>
         <p class="coffee-modal__text" style="margin-top: 12px; color: var(--text-muted); font-size: 0.9em;" data-i18n="downgradeNote">
-          说明：该操作会擦除含 AES 写频密钥的 Flash 区，避免刷回官方后 CPS 要密码；校准数据保留。
+          説明：この操作によりAES周波数書き込みキーが含まれるFlash領域が消去され、公式に戻した際にCPSでパスワードを求められるのを防ぎます（校正データは保持されます）。
         </p>
         <p class="coffee-modal__text" style="margin-top: 8px; text-align: right; color: var(--text-muted); font-size: 0.85em;" data-i18n="downgradeCredit">
-          感谢@sfyzzw提供思路
+          アイデアを提供してくださった @sfyzzw 氏に感謝します
         </p>
       </div>
-      <button type="button" class="coffee-modal__btn" id="downgradeGuideModalCloseBtn" data-i18n="close">关闭</button>
+      <button type="button" class="coffee-modal__btn" id="downgradeGuideModalCloseBtn" data-i18n="close">閉じる</button>
     </div>
   </div>
 
@@ -993,7 +993,7 @@
     var coffeeBackdrop = coffeeModal.querySelector('.coffee-modal__backdrop');
     var donationDataLoaded = false;
     var scrollInterval = null;
-    var defaultDonationData = '时间,昵称,金额,留言,来源\n2026-05-20 15:46:49,BI4BEO,8.88,谢谢博主,来自微信';
+    var defaultDonationData = '時間,ニックネーム,金額,メッセージ,ソース\n2026-05-20 15:46:49,BI4BEO,8.88,ブロガーさんありがとう,微信より';
 
     function parseDonationCSV(csvText) {
       var tbody = document.getElementById('donationTableBody');
@@ -1001,7 +1001,7 @@
       
       var lines = csvText.trim().split('\n');
       if (lines.length <= 1) {
-        tbody.innerHTML = '<tr><td colspan="5" class="donation-loading" data-i18n="noDonationRecord">暂无打赏记录</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="donation-loading" data-i18n="noDonationRecord">寄付記録はありません</td></tr>';
         return false;
       }
       
@@ -1035,7 +1035,7 @@
       
       fetch('data/donations.csv', { cache: 'no-store' })
         .then(function(response) {
-          if (!response.ok) throw new Error('无法加载打赏数据');
+          if (!response.ok) throw new Error('寄付データを読み込めません');
           return response.text();
         })
         .then(function(csvText) {
@@ -1065,174 +1065,8 @@
       
       var scrollSpeed = 1;
       var direction = 1;
-      var pauseTime = 2000;
-      var isPaused = false;
-      
-      scrollContainer.addEventListener('mouseenter', function() {
-        isPaused = true;
-      });
-      
-      scrollContainer.addEventListener('mouseleave', function() {
-        isPaused = false;
-      });
-      
-      function scroll() {
-        if (isPaused) {
-          requestAnimationFrame(scroll);
-          return;
-        }
-        
-        var currentScroll = scrollContainer.scrollTop;
-        var maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
-        
-        if (direction === 1 && currentScroll >= maxScroll) {
-          direction = -1;
-          setTimeout(function() {
-            isPaused = false;
-          }, pauseTime);
-          isPaused = true;
-        } else if (direction === -1 && currentScroll <= 0) {
-          direction = 1;
-          setTimeout(function() {
-            isPaused = false;
-          }, pauseTime);
-          isPaused = true;
-        }
-        
-        if (!isPaused) {
-          scrollContainer.scrollTop += scrollSpeed * direction;
-        }
-        
-        requestAnimationFrame(scroll);
-      }
-      
-      scroll();
+      var pauseTime = 0;
     }
-
-    function openCoffeeModal() {
-      coffeeModal.hidden = false;
-      coffeeModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      loadDonationData();
-    }
-
-    function closeCoffeeModal() {
-      coffeeModal.hidden = true;
-      coffeeModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      showCenterToast('感谢大佬打赏！', 'success');
-    }
-
-    function showCenterToast(message, type) {
-      var toast = document.createElement('div');
-      toast.className = 'coffee-toast coffee-toast--center coffee-toast--' + (type || 'info');
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      setTimeout(function() {
-        toast.classList.add('coffee-toast--fadeout');
-        setTimeout(function() {
-          if (toast.parentNode) {
-            toast.parentNode.removeChild(toast);
-          }
-        }, 300);
-      }, 2000);
-    }
-
-    coffeeBtn.addEventListener('click', openCoffeeModal);
-    coffeeModalCloseBtn.addEventListener('click', closeCoffeeModal);
-    coffeeBackdrop.addEventListener('click', closeCoffeeModal);
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !coffeeModal.hidden) {
-        closeCoffeeModal();
-      }
-    });
-  })();
-
-  (function() {
-    var downgradeBtn = document.getElementById('downgradeGuideBtn');
-    var downgradeModal = document.getElementById('downgradeGuideModal');
-    var downgradeModalCloseBtn = document.getElementById('downgradeGuideModalCloseBtn');
-    var downgradeBackdrop = downgradeModal.querySelector('.coffee-modal__backdrop');
-
-    function openDowngradeModal() {
-      downgradeModal.hidden = false;
-      downgradeModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDowngradeModal() {
-      downgradeModal.hidden = true;
-      downgradeModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    downgradeBtn.addEventListener('click', openDowngradeModal);
-    downgradeModalCloseBtn.addEventListener('click', closeDowngradeModal);
-    downgradeBackdrop.addEventListener('click', closeDowngradeModal);
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !downgradeModal.hidden) {
-        closeDowngradeModal();
-      }
-    });
-  })();
-
-  (function() {
-    var chips = document.getElementById('subtitleChips');
-    var toggleBtn = document.getElementById('subtitleChipsToggle');
-    var collapsedEl = document.getElementById('subtitleChipsCollapsed');
-    if (!chips || !toggleBtn || !collapsedEl) return;
-
-    toggleBtn.addEventListener('click', function() {
-      chips.classList.add('collapsed');
-    });
-
-    collapsedEl.addEventListener('click', function() {
-      chips.classList.remove('collapsed');
-    });
-
-    collapsedEl.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        chips.classList.remove('collapsed');
-      }
-    });
-  })();
-
-  (function() {
-    function patchTranslations() {
-      var lang = (window.getCurrentLang ? window.getCurrentLang() : 'zh');
-      var isEn = lang === 'en';
-      var biliNameEl = document.querySelector('[data-i18n="biliName"]');
-      if (biliNameEl) {
-        biliNameEl.textContent = isEn ? "Little Yan Can't Connect" : '\u5c0f\u95eb\u8fde\u4e0d\u4e0a';
-      }
-      var biliChip = document.querySelector('.subtitle-chip--bili');
-      if (biliChip) {
-        biliChip.title = isEn ? "Bilibili \u00b7 Little Yan Can't Connect" : '\u54d4\u54e9\u54d4\u54e9 \u00b7 \u5c0f\u95eb\u8fde\u4e0d\u4e0a';
-      }
-      var mediaText = isEn ? 'BD1AHN Media Accounts' : 'BD1AHN\u5a92\u4f53\u8d26\u53f7';
-      document.querySelectorAll('[data-i18n="mediaAccount"]').forEach(function(el) {
-        el.textContent = mediaText;
-      });
-      var collapseText = isEn ? 'Collapse' : '\u6536\u8d77';
-      document.querySelectorAll('[data-i18n-title="collapseChips"]').forEach(function(el) {
-        el.title = collapseText;
-        el.setAttribute('aria-label', collapseText);
-      });
-      var expandText = isEn ? 'Expand' : '\u5c55\u5f00';
-      document.querySelectorAll('[data-i18n-title="expandChips"]').forEach(function(el) {
-        el.title = expandText;
-        el.setAttribute('aria-label', expandText);
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', patchTranslations);
-    } else {
-      patchTranslations();
-    }
-    window.addEventListener('langchange', patchTranslations);
   })();
   </script>
 </body>
