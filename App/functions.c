@@ -158,7 +158,6 @@ void FUNCTION_Transmit()
     // if DTMF is enabled when TX'ing, it changes the TX audio filtering !! .. 1of11
     BK4819_DisableDTMF();
 
-    BK4819_DisableMDC1200Rx();
     MDC1200_AppDisableRx();
     YAN_RF_DisableRx();
 

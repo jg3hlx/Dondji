@@ -1955,32 +1955,6 @@ void BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size, const bool
     MDC1200_AppNoteOwnTx();
 }
 
-void BK4819_DisableMDC1200Rx(void)
-{
-    BK4819_WriteRegister(BK4819_REG_70, 0);
-    BK4819_WriteRegister(BK4819_REG_72, 0);
-    BK4819_WriteRegister(BK4819_REG_58, 0);
-    BK4819_WriteRegister(BK4819_REG_59, 0x0068);
-    BK4819_WriteRegister(BK4819_REG_5A, 0);
-    BK4819_WriteRegister(BK4819_REG_5B, 0);
-    BK4819_WriteRegister(BK4819_REG_5C, 0);
-    BK4819_WriteRegister(BK4819_REG_5D, 0);
-    BK4819_WriteRegister(BK4819_REG_5E, 0);
-}
-
-void BK4819_EnableMDC1200Rx(void)
-{
-    /* UVK1 V2.0 dual-verified RX modem: FFFF matcher + software decode. */
-    BK4819_WriteRegister(BK4819_REG_70, 0x00E0);
-    BK4819_WriteRegister(BK4819_REG_72, scale_freq(1200));
-    BK4819_WriteRegister(BK4819_REG_58, 0x3FC3);
-    BK4819_WriteRegister(BK4819_REG_5C, 0x5625);
-    BK4819_WriteRegister(BK4819_REG_5A, 0xFFFF);
-    BK4819_WriteRegister(BK4819_REG_5B, 0xFFFF);
-    BK4819_WriteRegister(BK4819_REG_5E, 0x3204);
-    BK4819_WriteRegister(BK4819_REG_5D, (uint16_t)(((22u * 2u) - 1u) << 8));
-}
-
 void BK4819_Enable_AfDac_DiscMode_TxDsp(void)
 {
     BK4819_WriteRegister(BK4819_REG_30, 0x0000);
