@@ -2,7 +2,7 @@
 
 This manual is divided into four chapters:
 
-1. **Chapter 1 — System User Guide**: Day-to-day operation after flashing Dondji firmware (radio, scanning, saving channels, naming, spectrum, CW trainer, etc.)
+1. **Chapter 1 — System User Guide**: Day-to-day operation after flashing Dondji firmware (radio, scanning, saving channels, naming, spectrum, etc.)
 2. **Chapter 2 — Firmware & Flashing**: Web-based flashing, calibration, configuration, storage addresses, and technical notes
 3. **Chapter 3 — FAQ & Other**: Frequently asked questions and contact information
 4. **Chapter 4 — Licensing & Brand**: Commercial use notice and trademark policy
@@ -63,7 +63,6 @@ Welcome to **Dondji (叮咚鸡)**. This chapter covers basic operation after pow
 | `F+5` | Enter spectrum |
 | `Long 5` | Dual watch + dual VFO: range scan (see 1.3) |
 | `Long 6` or `F+6` | Switch power level |
-| `F+7` | Enter **CW trainer** |
 | `Long 8` | Reverse frequency (swap TX/RX) |
 | `F+8` | Switch backlight mode |
 | `Long 9` | Jump to the channel set in **Other → PTT Call** |
@@ -300,30 +299,22 @@ This setting is stored in configuration (SPI `0x00A148`) and is included in conf
 
 ---
 
-## 1.7 CW Trainer (F+7)
+## 1.7 MDC ID and TX Tail Tone
 
-On the main screen, **`F+7`** opens the **CW trainer** directly.
-
-**EXIT** leaves the trainer.
-
----
-
-## 1.8 MDC ID and TX Tail Tone
-
-Current firmware still uses **MDC1200** (Yan ID replacement is in the design doc; **not yet implemented**).
+Current firmware supports both **MDC1200** and **Yan ID** (coexist, no conflict).
 
 1. **MENU** → **Other** → **TX Tail (Roger)**: **Off / ROGER / MDC / Yan ID / Custom1 / Custom2 / Custom3** (same labels in EN/CN UI).
    - **Custom1**: four-tone chirp (1975→2100→3140→2800 Hz, 10ms gaps)
    - **Custom2**: three 430 Hz beeps (350 ms on / 350 ms off)
    - **Custom3**: three-tone drop (1650→1100→750 Hz)
-2. With **MDC** selected, edit the 4-digit hex unit ID in the **MDC ID** menu.
-3. When the other station sends MDC and local Roger is MDC, the main screen can show an **MDC ID** receive alert.
+2. With **MDC** selected, edit the 4-digit hex unit ID in the **MDC ID** menu (defaults to not-sent when 0000); with **Yan ID** selected, edit a 6-character callsign (uppercase letters / digits) in the **Yan ID** menu.
+3. Receive alerts require enabling **MDC Rx** / **Yan Rx** in the menu: when the other station sends MDC / Yan ID, the main screen can show an ID receive alert (MDC shows the callsign if matched in the address book, otherwise the hex ID; Yan ID shows the remote callsign directly).
 
-In config backup, MDC ID is at SPI `0x00A172` (2 bytes); see Chapter 2 address table.
+In config backup, MDC ID is at SPI `0x00A172` (2 bytes) and Yan ID at SPI `0x00A088` (8 bytes); see Chapter 2 address table.
 
 ---
 
-## 1.9 Dual PTT
+## 1.8 Dual PTT
 
 When **not MAIN ONLY** (dual-watch / cross-band dual-row home), **side key 1 or side key 2** can act as a second PTT: hardware PTT keys the **top main** channel; hold the side key bound to PTT to key the **bottom** channel.
 
@@ -370,7 +361,7 @@ Depends on the mic / TX animation setting:
 
 ---
 
-## 1.10 Usage Notes
+## 1.9 Usage Notes
 
 - During TX/RX the voltage meter may jump with current — normal (see FAQ #13).
 - Use this site or verified tools for programming and calibration; address layout is not compatible with other firmware.
@@ -572,6 +563,7 @@ Config backup starts at `0x00A000`, 512 B total. Fields match 2.5; full list:
 | `0x00A0B8` | 8 B | Voice, dBm correction start |
 | `0x00A0B9` | 7 B | dBm correction table |
 | `0x00A0C0` | 8 B | Alarm, Roger, tail time, TX VFO, battery type |
+| `0x00A088` | 8 B | **Yan ID** (6-char callsign) + MDC Rx toggle + Yan Rx toggle |
 | `0x00A0C8` | 16 B | Logo custom text line 1 |
 | `0x00A0D0` | 8 B | DTMF related |
 | `0x00A0D8` | 16 B | DTMF timing + Logo text line 2 |
@@ -687,7 +679,7 @@ Legacy Chinese channel names: `0x020000`–`0x023FFF` (non-overlapping with font
    Answer: Flash the matching font pack and set **Display → Display Language** to Chinese.
 
 3. **Dual channel: sometimes channel name below, sometimes frequency?**  
-   Answer: By design. Without Chinese in the name, the lower line shows frequency and the upper corner shows the channel name. Names are up to ~5 Chinese characters (~15 English letters); when space is tight, display positions swap.
+   Answer: By design. Without Chinese in the name, the lower line shows frequency and the upper corner shows the channel name. Names are up to ~5 Chinese characters (~15 English letters); when the name exceeds the display length it scrolls. When programming via the website, names longer than 5 Chinese characters will be truncated in the display...
 
 4. **Bricked?**  
    Answer: Wrong firmware for your radio? Other programming tools or random calibration edits? Did you follow the web flash steps exactly?  
@@ -750,11 +742,13 @@ Legacy Chinese channel names: `0x020000`–`0x023FFF` (non-overlapping with font
 
     - ~280 MHz is VHF/UHF boundary — affects filtering and PA gain  
     - Wide RX can listen SW up to 1.3 GHz; TX still follows band table limits  
+15. **Why are the left/right or up/down keys reversed?**
+   Answer: The firmware supports both K1 and K6 V3, so you need to set it yourself. Hold **PTT** and the lower adjacent side key while powering on to unlock related options; pick the navigation key layout for your model. UI usually shows K1 or K5 only (K5/K6 share the same chip, different shells).
 
 ## 3.2 Contact
 
 - Douyin: 小闫连不上  
-- Bilibili: 小闫同学啊  
+- Bilibili: 小闫连不上  
 - Xiaohongshu: 小闫同学  
 - WeChat Channels: 小闫连不上  
 

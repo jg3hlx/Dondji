@@ -947,31 +947,35 @@
       <h2 id="downgradeGuideModalTitle" class="coffee-modal__title" data-i18n="downgradeTitle">🔧 UVK1(8) 純正復元チュートリアル</h2>
       <div class="coffee-modal__content">
         <p class="coffee-modal__text">
-          <strong data-i18n="downgradeSubtitle">おやびんメニューの「初期化 → 純正(OEM)」で周波数書き込み用キーを消去した後、公式CPSで純正ファームウェアに戻します：</strong>
+          <strong data-i18n="downgradeSubtitle">まず、キャリブレーションデータを復元し、隠しメニューのロックを解除してバッテリーパラメータを修正した後、「純正（OEM）」の消去・書き込みキーを使用して、最後に公式ファームウェアを再インストールします：</strong>
         </p>
         <ol class="downgrade-steps" style="text-align: left; margin: 12px 0; padding-left: 20px; color: var(--text-muted); line-height: 1.6; font-size: 0.9em;">
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">全メニューのロック解除：</strong><br>
-            <span data-i18n="downgradeStep1Content">電源を切り、PTTとすぐ下のサイドボタンを同時に押しながら起動し、フルメニューに入ります。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">キャリブレーションデータの復元：</strong><br>
+            <span data-i18n="downgradeStep1Content">無線機は「ディンドンチキン」システムに接続された状態で、電源を入れたままにしてください。当サイトで【キャリブレーションの復元】を開き、【キャリブレーションの解釈】をクリックします。ポップアップウィンドウで【バックアップキャリブレーションファイルの読み込み】をクリックし、下部の【公式アドレスの書き込み】をクリックします（自動的に再起動しない場合は、無線機が再起動するまで書き込みを繰り返してください）。その後、【サードパーティアドレスの書き込み】をクリックします（同様に、無線機が自動的に再起動するまで書き込みを繰り返してください）。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">「純正」初期化の実行：</strong><br>
-            <span data-i18n="downgradeStep2Content">「その他」＞「初期化」＞「純正」(OEM) を選択して確定します。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">すべてのメニューをアンロック：</strong><br>
+            <span data-i18n="downgradeStep2Content">電源を切った後、PTTボタンとそのすぐ下にあるサイドボタンを同時に長押しして電源を入れ、フルメニュー画面を表示します。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">電源オフ：</strong><br>
-            <span data-i18n="downgradeStep3Content">画面に「電源を切ってください」と表示されたら電源を切ります（英語表示の場合は PWR OFF）。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">バッテリーパラメータの修正 + 工場出荷時設定への復元：</strong><br>
+            <span data-i18n="downgradeStep3Content">「その他」メニューに入り、「バッテリータイプ」と「バッテリーキャリブレーション」を実際のバッテリーに一致する正しい値に変更します（オプションが間違っていると、工場出荷時設定にリセットした後、「高電圧のため発射不可」や「電圧655異常」と表示されます）。また、「ナビゲーションキー」を左右のK1に設定します。その後、同じメニューで「工場出荷時設定へのリセット」を開き、「OEM」を選択して確認します。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">公式CPSで純正ファームウェアを書き込む：</strong><br>
-            <span data-i18n="downgradeStep4Content">公式プログラミングソフトを使用：デバイス ＞ アップデートプログラム ＞ アップデート。純正ファームウェアは本ページの緊急ツールボックスからダウンロードできます。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">電源を切る：</strong><br>
+            <span data-i18n="downgradeStep4Content">画面に「電源を切ってください」と表示されたら、電源を切ってください（英語画面では「PWR OFF」と表示されます）。</span>
+          </li>
+          <li style="margin-bottom: 8px;">
+            <strong style="color: var(--accent);" data-i18n="downgradeStep5Title">公式 CPS による純正ファームウェアの書き込み：</strong><br>
+            <span data-i18n="downgradeStep5Content">公式のフラッシュツールを使用します：「デバイス」→「ファームウェアの更新」→「更新」。純正ファームウェアは、このページにある「緊急ツールボックス」からダウンロードできます。</span>
           </li>
         </ol>
         <p class="coffee-modal__text" style="margin-top: 12px; color: var(--text-muted); font-size: 0.9em;" data-i18n="downgradeNote">
           説明：この操作によりAES周波数書き込みキーが含まれるFlash領域が消去され、公式に戻した際にCPSでパスワードを求められるのを防ぎます（校正データは保持されます）。
         </p>
         <p class="coffee-modal__text" style="margin-top: 8px; text-align: right; color: var(--text-muted); font-size: 0.85em;" data-i18n="downgradeCredit">
-          アイデアを提供してくださった @sfyzzw 氏に感謝します
+          @sfyzzwさん、アイデアを提供していただきありがとうございます。また、WeChatの@Kurtさん、詳細な手順をテストしていただきありがとうございます。
         </p>
       </div>
       <button type="button" class="coffee-modal__btn" id="downgradeGuideModalCloseBtn" data-i18n="close">閉じる</button>
@@ -982,7 +986,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked@14.1.4/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
-  <script src="js/lang.min.js?v=20260824a"></script>
+  <script src="js/lang.js?v=20261009a"></script>
   <script src="js/flash.min.js?v=20260913a"></script>
   <script src="js/k1-init-freq-download.js?v=20260816a"></script>
   <script>

@@ -1004,15 +1004,12 @@ void RADIO_SetupRegisters(bool switchToForeground)
     BK4819_EnableDTMF();
     InterruptMask |= BK4819_REG_3F_DTMF_5TONE_FOUND;
 
-    BK4819_DisableMDC1200Rx();
     YAN_RF_DisableRx();
 
-    if (MDC1200_AppRxEnabled())
-    {
-        MDC1200_AppEnableRx();
-        InterruptMask |= BK4819_REG_3F_FSK_RX_SYNC | BK4819_REG_3F_FSK_RX_FINISHED | BK4819_REG_3F_FSK_FIFO_ALMOST_FULL;
-    }
-    else if (YAN_RF_ReceiveEnabled())
+    /* MDC1200 RX 为软件FFSK解调(PA4采鉴频音频), 不占用FSK modem/中断,
+       TX 侧 PlayMDC1200 自行恢复 REG_58/70 — 无需硬件 RX 拆除;
+       仅 Yan ID RX 需要硬件FSK RX 中断 */
+    if (YAN_RF_ReceiveEnabled())
     {
         YAN_RF_EnableRx();
         InterruptMask |= BK4819_REG_3F_FSK_RX_SYNC | BK4819_REG_3F_FSK_RX_FINISHED | BK4819_REG_3F_FSK_FIFO_ALMOST_FULL;

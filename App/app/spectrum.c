@@ -35,6 +35,7 @@
  *     limitations under the License.
  */
 #include "app/spectrum.h"
+#include "app/mdc1200_app.h"
 #include "am_fix.h"
 #include "audio.h"
 #include "misc.h"
@@ -2531,6 +2532,10 @@ static void Tick()
 
 void APP_RunSpectrum()
 {
+    /* 频谱为独立循环(冻结主tick): 入口先停 MDC1200 软接收采样,
+       避免采样期间的 ADC 外部触发模式影响本模式的 ADC 使用 */
+    MDC1200_AppDisableRx();
+
     settings.backlightState = gEeprom.BACKLIGHT_TIME == 0 ? false : true;
 
     // TX here coz it always? set to active VFO
