@@ -947,31 +947,35 @@
       <h2 id="downgradeGuideModalTitle" class="coffee-modal__title" data-i18n="downgradeTitle">🔧 UVK1(8)恢复原厂教程</h2>
       <div class="coffee-modal__content">
         <p class="coffee-modal__text">
-          <strong data-i18n="downgradeSubtitle">用叮咚鸡菜单「恢复出厂 → 原厂(OEM)」擦除写频密钥后，再用官方 CPS 刷回原厂固件：</strong>
+          <strong data-i18n="downgradeSubtitle">先恢复校准数据、解锁隐藏菜单并修正电池参数，再用「原厂(OEM)」擦除写频密钥，最后刷回官方固件：</strong>
         </p>
         <ol class="downgrade-steps" style="text-align: left; margin: 12px 0; padding-left: 20px; color: var(--text-muted); line-height: 1.6; font-size: 0.9em;">
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">解锁全部菜单：</strong><br>
-            <span data-i18n="downgradeStep1Content">关机后，同时按住 PTT 与紧挨其下方的侧键开机，进入完整菜单。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep1Title">恢复校准数据：</strong><br>
+            <span data-i18n="downgradeStep1Content">电台处于叮咚鸡系统、保持开机。在本网站打开【恢复校准】→ 点击【校准解读】→ 弹窗中点击【加载备份校准文件】→ 点击底部【写入官方地址】（如未自动重启则重复写入直到电台重启）→ 再点击【写入第三方地址】（同样写入到电台自动重启）。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">执行「原厂」恢复：</strong><br>
-            <span data-i18n="downgradeStep2Content">打开「其它」→「恢复出厂」→ 选择「原厂」(OEM) → 确认。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep2Title">解锁全部菜单：</strong><br>
+            <span data-i18n="downgradeStep2Content">关机后，同时按住 PTT 与紧挨其下方的侧键开机，进入完整菜单。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">关机：</strong><br>
-            <span data-i18n="downgradeStep3Content">屏幕显示「请关机」后关机（英文界面为 PWR OFF）。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep3Title">修正电池参数 + 执行原厂恢复：</strong><br>
+            <span data-i18n="downgradeStep3Content">进入「其它」菜单，将「电池类型」、「电池校准」更改为与实际电池匹配的正确值（若选项错误，刷回原厂后会显示高压无法发射、电压 655 异常），并将「导航键」选择为左右 K1。然后在同一菜单打开「恢复出厂」→ 选择「原厂」(OEM) → 确认。</span>
           </li>
           <li style="margin-bottom: 8px;">
-            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">官方 CPS 刷原厂固件：</strong><br>
-            <span data-i18n="downgradeStep4Content">用官方写频软件：设备 → 升级程序 → 升级。原厂固件可在本页应急工具箱下载。</span>
+            <strong style="color: var(--accent);" data-i18n="downgradeStep4Title">关机：</strong><br>
+            <span data-i18n="downgradeStep4Content">屏幕显示「请关机」后关机（英文界面为 PWR OFF）。</span>
+          </li>
+          <li style="margin-bottom: 8px;">
+            <strong style="color: var(--accent);" data-i18n="downgradeStep5Title">官方 CPS 刷原厂固件：</strong><br>
+            <span data-i18n="downgradeStep5Content">用官方写频软件：设备 → 升级程序 → 升级。原厂固件可在本页应急工具箱下载。</span>
           </li>
         </ol>
         <p class="coffee-modal__text" style="margin-top: 12px; color: var(--text-muted); font-size: 0.9em;" data-i18n="downgradeNote">
           说明：该操作会擦除含 AES 写频密钥的 Flash 区，避免刷回官方后 CPS 要密码；校准数据保留。
         </p>
         <p class="coffee-modal__text" style="margin-top: 8px; text-align: right; color: var(--text-muted); font-size: 0.85em;" data-i18n="downgradeCredit">
-          感谢@sfyzzw提供思路
+          感谢@sfyzzw提供思路，感谢微信@Kurt测试详细步骤
         </p>
       </div>
       <button type="button" class="coffee-modal__btn" id="downgradeGuideModalCloseBtn" data-i18n="close">关闭</button>
@@ -982,7 +986,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked@14.1.4/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
-  <script src="js/lang.min.js?v=20260824a"></script>
+  <script src="js/lang.js?v=20261009a"></script>
   <script src="js/flash.min.js?v=20260913a"></script>
   <script src="js/k1-init-freq-download.js?v=20260816a"></script>
   <script>

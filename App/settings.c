@@ -85,6 +85,26 @@ void SETTINGS_InitEEPROM(void)
 
             PY25Q16_WriteBuffer(0x00A158, displayByte, sizeof(displayByte));
 
+            // 3.5. Migrate Yan ID from 0x00A0C8 to 0x00A088 (was conflicting with Logo text)
+            {
+                uint8_t yan_new[8];
+                PY25Q16_ReadBuffer(0x00A088, yan_new, 8);
+                bool need_migrate = true;
+                for (uint8_t i = 0; i < 8; i++) {
+                    if (yan_new[i] != 0xFF) { need_migrate = false; break; }
+                }
+                if (need_migrate) {
+                    uint8_t yan_old[8];
+                    PY25Q16_ReadBuffer(0x00A0C8, yan_old, 8);
+                    char c = (char)yan_old[0];
+                    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                        PY25Q16_WriteBuffer(0x00A088, yan_old, 8);
+                        uint8_t blank[8] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+                        PY25Q16_WriteBuffer(0x00A0C8, blank, 8);
+                    }
+                }
+            }
+
             // 4. Reset logo lines (clear to null for strlen() == 0)
 
             char logoLines[32];
@@ -303,10 +323,10 @@ gEeprom.FreqChannel[1]   = IS_FREQ_CHANNEL(Data16[5]) ? Data16[5] : (FREQ_CHANNE
     gEeprom.TX_VFO                         = (Data[3] <  2) ? Data[3] : 0;
     gEeprom.BATTERY_TYPE                   = (Data[4] < BATTERY_TYPE_UNKNOWN) ? Data[4] : BATTERY_TYPE_1600_MAH;
 
-    // 0EB0..0EB7 — Yan ID + receive flag (mangosteen-compatible gap)
+    // Yan ID + receive flags at 0x00A088 (migrated from 0x00A0C8 to avoid Logo text conflict)
     {
         uint8_t yan[8];
-        PY25Q16_ReadBuffer(0x00A0A8 + 0x20, yan, 8);
+        PY25Q16_ReadBuffer(0x00A088, yan, 8);
         memset(gEeprom.yan_id, 0, sizeof(gEeprom.yan_id));
         for (uint8_t i = 0; i < YAN_ID_LEN; i++) {
             const char c = (char)yan[i];
@@ -1039,13 +1059,7 @@ void SETTINGS_SaveSettings(void)
     State[3] = gEeprom.TX_VFO;
     State[4] = gEeprom.BATTERY_TYPE;
 
-    // 0x0EB0 — Yan ID + yan_id_rx
-    State = SecBuf + 0x20;
-    memset(State, 0, 8);
-    for (uint8_t i = 0; i < YAN_ID_LEN && gEeprom.yan_id[i]; i++)
-        State[i] = (uint8_t)gEeprom.yan_id[i];
-    State[6] = gEeprom.mdc_id_rx ? 1 : 0;
-    State[7] = gEeprom.yan_id_rx ? 1 : 0;
+    // 0x0EB0 — reserved (Yan ID moved to 0x00A088; Logo text owns 0x00A0C8 now)
 
     // 0x0ED0
     State = SecBuf + 0x40;
@@ -1069,6 +1083,17 @@ void SETTINGS_SaveSettings(void)
 #endif
 
     PY25Q16_WriteBuffer(0x00A0A8, SecBuf, 0x50);
+
+    // Yan ID at 0x00A088 (moved from 0x00A0C8 to avoid Logo text conflict)
+    {
+        uint8_t yan[8];
+        memset(yan, 0, 8);
+        for (uint8_t i = 0; i < YAN_ID_LEN && gEeprom.yan_id[i]; i++)
+            yan[i] = (uint8_t)gEeprom.yan_id[i];
+        yan[6] = gEeprom.mdc_id_rx ? 1 : 0;
+        yan[7] = gEeprom.yan_id_rx ? 1 : 0;
+        PY25Q16_WriteBuffer(0x00A088, yan, 8);
+    }
 
     // -------------------------
     // 0f18 - 0f20
