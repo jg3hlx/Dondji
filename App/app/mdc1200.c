@@ -221,7 +221,7 @@ bool MDC1200_process_rx_data(
 
             if (rx.stage == 0) {
 
-                const unsigned int sync_bit_ok_threshold = 32;
+                const unsigned int sync_bit_ok_threshold = 30;
 
                 if (rx.bit_count >= 40) {
                     uint64_t sync_nor = 0x07092a446fu;
