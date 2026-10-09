@@ -776,8 +776,8 @@ static void CheckRadioInterrupts(void)
 
         if (interrupts.fskRxSync || interrupts.fskFifoAlmostFull || interrupts.fskRxFinied)
         {
-            if (MDC1200_AppRxEnabled())
-                MDC1200_AppOnRadioInterrupt(interrupts.__raw);
+            /* MDC1200 RX 已改为软件FFSK解调(不占用FSK modem), 此处仅Yan ID
+               需要硬件FSK中断 */
             if (YAN_RF_ReceiveEnabled())
                 YAN_RF_OnRadioInterrupt(interrupts.__raw);
         }
