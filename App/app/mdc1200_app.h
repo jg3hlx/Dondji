@@ -1,7 +1,7 @@
 /*
  * Dondji Firmware — MDC1200 RX application layer
  *
- * [软接收 2026-10-08] RX 为软件 FFSK 解调(PA4 采 FM 鉴频音频, ADC@9.6kHz
+ * [软接收 2026-10-08] RX 为软件 FFSK 解调(PA4 采 FM 鉴频音频, ADC@14.4kHz
  * + 软件解调前端), 不占用 BK4819 FSK modem — 无线中断钩子(AppEnableRx/
  * AppOnRadioInterrupt)已删除。采样启停由静噪门控自动管理(AppTick10ms)。
  */

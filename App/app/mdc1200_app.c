@@ -5,16 +5,22 @@
  *   硬件 FSK RX 全退场(匹配字/侧车/重臂/8相位重对齐全删) — BK4819 保持
  *   普通 FM RX, 不配置 FSK RX 块。
  *   信号链: PA4 模拟音频(AC耦合, MCU DAC 无缓冲输出钳位中点2048)
- *   → ADC 通道4 @9.6kHz(TIM3 TRGO 外部触发, EOC 中断逐样本)
- *   → 软件解调前端(带通1469.7Hz + 16样本窗滑动相关器 + DPLL)
+ *   → ADC 通道4 @14.4kHz(TIM3 TRGO 外部触发, EOC 中断逐样本)
+ *   → 软件解调前端(带通1469.7Hz + 24样本窗滑动相关器 + DPLL)
  *   → 空中原始bit流(不做NRZI) → 64字节位环(ISR→主循环)
  *   → 128字节捕获缓冲(入栈即XOR 0xFF转解码域) → losehu 滑窗解码链(逐bit滑窗搜40bit
  *   同步模式, 32/40容错, 正/反极性双分支) → ID 弹窗显示。
  *
- *   窗16数学定案(仿真+实机判决): 8样本窗主瓣宽1200Hz, 1800Hz距1200Hz
- *   仅600Hz仍在主瓣内→串扰64%, 叠加FM去加重幅度差→bit1判决余量仅~4%
- *   必败; 16样本窗第一零点=9600/16=600Hz=频差→1200/1800数学正交串扰=0,
- *   幅度差彻底免疫。音调-bit映射: 1200Hz=空中bit 1 (即使映射颠倒,
+ *   [采样率 14400Hz 2026-10-09] 14400=1200×12=1800×8, 两音调均整周期采样,
+ *   余弦表单周期无截断(cm1200[12]/cs1800[8]); 窗24@14400=1.667ms(与原
+ *   窗16@9600等长), 第一零点=14400/24=600Hz=频差→1200/1800数学正交串扰=0。
+ *   BP系数按Fs=14400 RBJ重算; 每bit 12样本, PLL_STEP=5461(61ppm欠量由DPLL
+ *   闭环吸收); 相关器O(1)增量更新, ISR计算量与窗长无关。
+ *
+ *   窗长正交论证: 8样本窗@9600主瓣宽1200Hz, 1800距1200仅600Hz仍在主瓣内
+ *   →串扰64%, 叠加FM去加重幅度差→bit1判决余量仅~4%必败; 等窗时长1.667ms
+ *   方案(16@9600 / 24@14400)第一零点=600Hz=频差→串扰=0, 幅度差彻底免疫。
+ *   音调-bit映射: 1200Hz=空中bit 1 (即使映射颠倒,
  *   差分编码对全局取反免疫, 第二遍翻转首bit解码覆盖残余奇偶态)。
  *
  * 门控: 静噪开(绿灯亮)时采样解码, 静噪关时停止+收尾解码; TX/频谱/CW/
@@ -27,8 +33,9 @@
  * 参考固件: uv-k1-k5v3-firmware-custom (F4HWN fork, 同硬件,
  *   PA4 音频通路+前端结构已实机验证)。
  *
- * [尺寸优化] (FLASH 贴 118K 上限, 解调数学与 V9 逐 bit 等价):
- *   - 相关器 4 MAC 手动展开 → 描述表循环 (表相位/窗长/系数完全一致);
+ * [尺寸优化] (FLASH 贴 118K 上限):
+ *   - 相关器 4 MAC 走 cv[4] 系数栈表+循环, 表相位由环槽 r 条件减法派生
+ *     (14400 下单周期表 cm1200[12]/cs1800[8] 合计20B, 比双16表省16B);
  *   - PPRE 分支删除: 全工程从不写 RCC_CFGR_PPRE(复位值0), 定时器时钟
  *     恒等于 SystemCoreClock, 分支为运行时死代码;
  *   - 采样停止改为调 BOARD_ADC_Init() 整态恢复(含校准, µs级), 替代
@@ -56,22 +63,24 @@ uint16_t gMdcId_RX;
 uint8_t  gMdcId_RX_timeout;
 char     gMdcCallsign[MDC_ADDRBOOK_NAME_LEN + 1];
 
-/* ---- 解调常量 1200/1800 FFSK, 窗16定案 ---- */
-/* 带通滤波器: 中心 sqrt(1200*1800)=1469.7Hz, Q=0.9, Q14定点 */
-#define BP_B0       5129
-#define BP_A1       (-12875)
-#define BP_A2       6126
-/* 相关器余弦表, 127幅度, 统一16相位(mod 16):
-   行0=1200Hz(8样本周期×2重复), 行1=1800Hz(16样本3整周期)
-   4个相关对的相位偏移: 1200Hz I/Q=r, r+6; 1800Hz I/Q=r, r+4
-   (V9 原始码的 r 与 ks 两个相位变量同初值同进位恒相等, 已合并为 r) */
-static const int8_t mdc_corr[2][16] = {
-    {127, 90, 0, -90, -127, -90, 0, 90, 127, 90, 0, -90, -127, -90, 0, 90},
-    {127, 49, -90, -117, 0, 117, 90, -49, -127, -49, 90, 117, 0, -117, -90, 49},
+/* ---- 解调常量 1200/1800 FFSK @Fs=14400Hz, 窗24 ---- */
+/* 带通滤波器: 中心 sqrt(1200*1800)=1469.7Hz, Q=0.9, Q14定点
+   (RBJ公式按Fs=14400重算) */
+#define BP_B0       4087
+#define BP_A1       (-19700)
+#define BP_A2       8202
+/* 相关器余弦表, 127幅度, 单周期(整周期采样无截断), 两表连续共用基址:
+   [0..11] 1200Hz: 14400/1200=12样本/周期
+   [12..19] 1800Hz: 14400/1800=8样本/周期
+   正弦=余弦表相位-90°: 1200 -3样本(+9 mod12), 1800 -2样本(+6 mod8) */
+static const int8_t mdc_c[20] = {
+    127, 110, 64, 0, -64, -110, -127, -110, -64, 0, 64, 110,
+    127, 90, 0, -90, -127, -90, 0, 90,
 };
-static const uint8_t mdc_ph_ofs[4] = {0, 6, 0, 4};
-#define PLL_STEP    8192    /* 65536/bit ÷ 8样本/bit */
-#define PLL_CTR     45056    /* 跳变锚点5.5样本(窗16群延迟补偿, 仿真扫描定优) */
+#define PLL_STEP    5461    /* 65536/bit ÷ 12样本/bit = 5461.33; 取整每bit欠
+                               4/65536=61ppm, 由DPLL跳变修正闭环吸收 */
+#define PLL_CTR     45056    /* 跳变锚点(bit内69%位置=8.32/12样本, 与原
+                               5.5/8同位; 窗1.667ms群延迟补偿, bit率1200未变) */
 #define PLL_SHIFT   2        /* 每次跳变修正1/4误差 */
 #define AGC_ATT     5        /* 峰值跟踪器: 攻击1/32 */
 #define AGC_DEC     10       /* 衰减1/1024每样本 */
@@ -86,8 +95,9 @@ typedef struct {
     int32_t  x1, x2, y1, y2;       /* 带通状态 */
     int32_t  sum[4];               /* 滑动相关器和: [0][1]=1200Hz I/Q, [2][3]=1800Hz I/Q */
     int32_t  pm, ps;               /* 各音调幅度峰值(AGC) */
-    uint32_t r;                    /* 环槽(16样本窗)/表相位 */
-    int16_t  ring[16][4];          /* 16样本窗的乘积(窗加倍: 数学正交串扰=0) */
+    uint32_t r;                    /* 环槽(24样本窗)/表相位 */
+    int16_t  ring[24][4];          /* 24样本窗的乘积(=1.667ms: 1200两周期/
+                                      1800三周期, 数学正交串扰=0) */
     int32_t  dprev, phase;         /* 判决值, DPLL相位(65536/bit) */
     uint8_t  acc, bits;            /* 字节累加器, bit计数 */
 } mdc_dem_t;
@@ -135,11 +145,11 @@ static int32_t mdc_tone(int32_t i, int32_t q, int32_t *pk)
     return mt;
 }
 
-/* ---- ADC采样中断: 9.6kHz TIM3 TRGO触发, 逐样本跑解调前端 ---- */
+/* ---- ADC采样中断: 14.4kHz TIM3 TRGO触发, 逐样本跑解调前端 ---- */
 void ADC_COMP_IRQHandler(void)
 {
-    const int32_t adc = (int32_t)(ADC1->DR & 0xFFFu);   /* 读DR清EOC */
-    ADC1->SR = 0;                                      /* rc_w0: 写0双保险 */
+    const int32_t adc = (int32_t)(ADC1->DR & 0xFFFu);   /* 读DR即清EOC
+                                                            (唯一使能的中断源) */
 
     mdc_dem_t *m = &s_dem;
 
@@ -149,17 +159,27 @@ void ADC_COMP_IRQHandler(void)
     const int32_t y = (BP_B0 * (x - m->x2) - BP_A1 * m->y1 - BP_A2 * m->y2) >> 14;
     m->x2 = m->x1; m->x1 = x; m->y2 = m->y1; m->y1 = y;
 
-    /* 滑动相关器, 16样本窗口; 正弦=余弦表相位-90°
-       (1200Hz: +6≡-2样本; 1800Hz: +4样本=3/4周期)
-       4个MAC走统一循环: 行=mdc_corr[j>>1], 相位=(r+ofs[j]) mod 16
-       (行0为8周期×2重复, mod16 与原 mod8 取值逐点一致) */
+    /* 滑动相关器, 24样本窗口; 正弦=余弦表相位-90°。表相位由环槽r派生
+       (条件减法/位与, 免M0+软除法): 1200相位=r mod 12(窗24含2周期);
+       1800相位=r mod 8(窗24是8的整倍数, 可位与); 表内偏移12 */
+    uint32_t p12 = m->r;
+    if (p12 >= 12u) p12 -= 12u;
+    uint32_t q12 = p12 + 9u;                 /* Q1200: -90°=-3样本 */
+    if (q12 >= 12u) q12 -= 12u;
+    const uint32_t i8 = m->r & 7u;           /* 1800相位(窗24是8的整倍数) */
+
     int16_t *o = m->ring[m->r];
+    const uint8_t ix[4] = {
+        (uint8_t)p12, (uint8_t)q12,
+        (uint8_t)(12u + i8), (uint8_t)(12u + ((i8 + 6u) & 7u)),  /* 1800 I,Q(-2样本) */
+    };
     for (uint32_t j = 0; j < 4u; j++) {
-        const int32_t p = (y * mdc_corr[j >> 1][(m->r + mdc_ph_ofs[j]) & 15u]) >> 8;
+        const int32_t p = (y * (int32_t)mdc_c[ix[j]]) >> 8;
         m->sum[j] += p - o[j];
         o[j] = (int16_t)p;
     }
-    m->r = (m->r + 1u) & 15u;
+    m->r++;
+    if (m->r >= 24u) m->r = 0;
 
     const int32_t mm = mdc_tone(m->sum[0], m->sum[1], &m->pm);   /* 1200Hz幅度 */
     const int32_t ms = mdc_tone(m->sum[2], m->sum[3], &m->ps);   /* 1800Hz幅度 */
@@ -205,17 +225,19 @@ static void mdc_sampling_start(void)
     DAC1->DHR12R1 = 2048;
     DAC1->SWTRIGR = 1;
 
-    /* TIM3: 9.6kHz update→TRGO (仅出触发信号, 不开中断)
-       PPRE全工程恒为复位值0(定时器时钟=SystemCoreClock), 无需分频修正 */
+    /* TIM3: 14.4kHz update→TRGO (仅出触发信号, 不开中断)
+       PPRE全工程恒为复位值0(定时器时钟=SystemCoreClock=HSI 8MHz), 无需分频修正;
+       ARR=554→实测14414Hz(+0.10%), 偏差由DPLL闭环吸收。
+       TIM3为全新使能(CR1/PSC/ARPE均复位态): ARR直写即生效, 无需EGR重装 */
     TIM3->CR2 = TIM_CR2_MMS_1;            /* MMS=010: update→TRGO */
-    TIM3->ARR = (SystemCoreClock / 9600u) - 1u;
-    TIM3->EGR = TIM_EGR_UG;
+    TIM3->ARR = (SystemCoreClock / 14400u) - 1u;
 
     /* ADC: 切通道4(PA4), TIM3 TRGO外部触发 (停止时BOARD_ADC_Init整态恢复)
        直写(非读改写): 采样期间 ADC 无人共用(电池采样被门控), 且 BOARD_ADC_Init
        恢复全态; SMPR3/SQR3 其余位清0=复位值语义, CR1 复位值0 仅加 EOCIE */
     ADC1->CR2   = 0;                    /* 改配置前禁用+清触发模式 */
-    ADC1->SMPR3 = 5u << 12;             /* ch4: 41.5周期 */
+    ADC1->SMPR3 = 5u << 12;             /* ch4: 41.5周期(ADC clk=2MHz→27µs
+                                           < 采样间隔69.4µs@14.4k, 余量充足) */
     ADC1->SQR3  = 4u;                   /* rank1=通道4 (L=1由SQR1复位值) */
     ADC1->SR    = 0;
     ADC1->CR1   = ADC_CR1_EOCIE;
@@ -224,7 +246,7 @@ static void mdc_sampling_start(void)
                | ADC_CR2_ADON;          /* 首次转换等首个TRGO, 无立即转换 */
 
     /* NVIC 直写(等价 CMSIS 内联, 省其 DSB/ISB 序列): 优先级字段在高2bit;
-       使能后首个转换最早在 TIM3 启动后 1/9600s, 使能生效延迟无碍 */
+       使能后首个转换最早在 TIM3 启动后 1/14400s, 使能生效延迟无碍 */
     NVIC->IP[ADC_COMP_IRQn]   = 2u << 6;
     NVIC->ISER[0]             = 1u << ADC_COMP_IRQn;
 
@@ -239,7 +261,8 @@ static void mdc_sampling_stop(void)
         return;
     s_sampling = false;
 
-    TIM3->CR1 = 0;
+    /* 无需先停TIM3->CR1: 下面ADC先关ADON并由BOARD_ADC_Init切回SW触发,
+       TIM3残余TRGO已无作用; 末尾关TIM3时钟(RCC)即停定时器 */
     NVIC->ICER[0] = 1u << ADC_COMP_IRQn;   /* 直写ICER(等价NVIC_DisableIRQ, 省DSB/ISB;
                                               残留迟到IRQ良性: s_sampling已false, start重置环) */
     ADC1->CR1 &= ~ADC_CR1_EOCIE;

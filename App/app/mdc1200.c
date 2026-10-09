@@ -309,5 +309,5 @@ void MDC1200_SendPTTID(void)
     unsigned int size;
 
     size = MDC1200_encode_single_packet(packet, MDC1200_OP_CODE_PTT_ID, 0x80, gMDC1200_ID);
-    BK4819_PlayMDC1200(packet, size, true);
+    BK4819_PlayMDC1200(packet, size);
 }

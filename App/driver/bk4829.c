@@ -1821,8 +1821,10 @@ void BK4819_PlayRoger(void)
         if (gMDC1200_ID != 0) {
             uint8_t packet[42];
             unsigned int size;
-            size = MDC1200_encode_single_packet(packet, MDC1200_OP_CODE_PTT_ID, 0x80, gMDC1200_ID);
-            BK4819_PlayMDC1200(packet, size, false);
+            /* 尾ID=POST_ID arg=0x00 (V9/losehu对齐): 0x80是首码PTT ID语义,
+               松键时发首码摩托罗拉只闪现即清除; 尾码才触发呼号持久显示 */
+            size = MDC1200_encode_single_packet(packet, MDC1200_OP_CODE_PTT_ID, 0x00, gMDC1200_ID);
+            BK4819_PlayMDC1200(packet, size);
         }
     } else if (gEeprom.ROGER == ROGER_MODE_YAN_ID) {
         (void)YAN_RF_Send();
@@ -1832,13 +1834,18 @@ void BK4819_PlayRoger(void)
     }
 }
 
-void BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size, const bool long_preamble)
+void BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size)
 {
     uint16_t fsk_reg59;
     unsigned int i;
     const uint16_t *p = (const uint16_t *)data;
 
     AUDIO_AudioPathOff();
+
+    /* FSK块断电复位30ms (V9/losehu定案): 上次TX或Yan RX驻留的FSK解调器/
+       字节计数器残留会污染本次发送(FIFO欠载垫同步字, 交替/首帧必败) */
+    BK4819_WriteRegister(BK4819_REG_58, 0x0000);
+    SYSTEM_DelayMs(30);
 
     BK4819_WriteRegister(BK4819_REG_50, 0x3B20);
 
@@ -1892,18 +1899,10 @@ void BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size, const bool
         (1u <<  7) |
         (96u <<  0));
 
-    fsk_reg59 = (0u << 15) |
-                (0u << 14) |
-                (0u << 13) |
-                (0u << 12) |
-                (0u << 11) |
-                (0u << 10) |
-                (0u <<  9) |
-                (0u <<  8) |
-                (0u <<  4) |
-                (1u <<  3) |
-                (0u <<  0);
-    fsk_reg59 |= long_preamble ? 15u << 4 : 3u << 4;
+    /* V9定案(2026-09-21): 前导字段固定15=AA×16, 首尾音一致
+       (短前导3=AA×3仅20ms, 摩托罗拉位同步/AGC窗口不足);
+       bit3=1 四字节硬件同步槽00×4 */
+    fsk_reg59 = (15u << 4) | (1u << 3);
 
     BK4819_WriteRegister(BK4819_REG_5D, ((size - 1) << 8));
     BK4819_WriteRegister(BK4819_REG_5A, 0x0000);

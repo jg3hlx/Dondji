@@ -169,7 +169,7 @@ void     BK4819_PrepareFSKReceive(void);
 
 void     BK4819_PlayRoger(void);
 
-void     BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size, const bool long_preamble);
+void     BK4819_PlayMDC1200(const uint8_t *data, const unsigned int size);
 /* MDC1200 RX 为软件FFSK解调(mdc1200_app.c), 无硬件 FSK RX 启停接口 */
 
 void     BK4819_Enable_AfDac_DiscMode_TxDsp(void);
