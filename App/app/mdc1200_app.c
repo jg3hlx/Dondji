@@ -125,19 +125,13 @@ bool MDC1200_AppRxEnabled(void)
 #endif
 }
 
-/* |(i, q)| ≈ max + 3/8·min (aprsrx同款) */
-static int32_t mdc_mag(int32_t i, int32_t q)
+/* 单音调幅度+峰值跟踪器(AGC): |(i,q)|≈max+3/8·min, aprsrx同款 */
+static int32_t mdc_tone(int32_t i, int32_t q, int32_t *pk)
 {
     if (i < 0) i = -i;
     if (q < 0) q = -q;
     if (i < q) { const int32_t t = i; i = q; q = t; }
-    return i + (q >> 2) + (q >> 3);
-}
-
-/* 单音调幅度+峰值跟踪器(AGC) (aprsrx同款) */
-static int32_t mdc_tone(int32_t i, int32_t q, int32_t *pk)
-{
-    const int32_t mt = mdc_mag(i, q);
+    const int32_t mt = i + (q >> 2) + (q >> 3);
     int32_t p = *pk;
     p += mt > p ? (mt - p) >> AGC_ATT : -(p >> AGC_DEC);
     if (p < PK_MIN) p = PK_MIN;
@@ -184,14 +178,19 @@ void ADC_COMP_IRQHandler(void)
     const int32_t mm = mdc_tone(m->sum[0], m->sum[1], &m->pm);   /* 1200Hz幅度 */
     const int32_t ms = mdc_tone(m->sum[2], m->sum[3], &m->ps);   /* 1800Hz幅度 */
 
-    /* 判决: 1200Hz占优为正 → 空中bit 1 (1200Hz=1映射, 差分免疫) */
-    const int32_t d = mm * m->ps - ms * m->pm;
-
-    /* DPLL: phase wrap时输出bit, 跳变拉中点 */
+    /* 判决: 1200Hz占优为正 → bit 1; DPLL跳变加迟滞(|d|>总能量25%)防噪声抖动 */
+    const int32_t dp = mm * m->ps, ds = ms * m->pm, d = dp - ds;
     m->phase += PLL_STEP;
-    if ((d > 0) != (m->dprev > 0))
-        m->phase += (PLL_CTR - m->phase) >> PLL_SHIFT;
-    m->dprev = d;
+    const int32_t th = (dp + ds) >> 2;
+    if (d > th) {
+        if (m->dprev <= 0)
+            m->phase += (PLL_CTR - m->phase) >> PLL_SHIFT;
+        m->dprev = d;
+    } else if (d < -th) {
+        if (m->dprev > 0)
+            m->phase += (PLL_CTR - m->phase) >> PLL_SHIFT;
+        m->dprev = d;
+    }
     if (m->phase >= 65536) {
         m->phase -= 65536;
         m->acc = (uint8_t)((m->acc << 1) | (d > 0 ? 1u : 0u));   /* MSB先到 */
@@ -230,7 +229,7 @@ static void mdc_sampling_start(void)
        ARR=554→实测14414Hz(+0.10%), 偏差由DPLL闭环吸收。
        TIM3为全新使能(CR1/PSC/ARPE均复位态): ARR直写即生效, 无需EGR重装 */
     TIM3->CR2 = TIM_CR2_MMS_1;            /* MMS=010: update→TRGO */
-    TIM3->ARR = (SystemCoreClock / 14400u) - 1u;
+    TIM3->ARR = 554u;                     /* HSI 8MHz/14400-1 (常量省__aeabi_uidiv) */
 
     /* ADC: 切通道4(PA4), TIM3 TRGO外部触发 (停止时BOARD_ADC_Init整态恢复)
        直写(非读改写): 采样期间 ADC 无人共用(电池采样被门控), 且 BOARD_ADC_Init
